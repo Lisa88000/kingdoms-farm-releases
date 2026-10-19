@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="intro-pending">
+  <div id="kf-boot"><div class="kb-in"><div class="kb-crest">🏰</div><div class="kb-title">KINGDOMS FARM</div><div class="kb-bar"><i id="kf-boot-fill"></i></div><div class="kb-txt">Chargement du royaume…</div></div></div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
     <symbol id="i-food" viewBox="0 0 24 24"><g fill="#e9c15a" stroke="#8a6a1e" stroke-width="1"><path d="M12 3c1 3 1 15 0 18-1-3-1-15 0-18z"/><path d="M12 7c2-1 4-1 5 1-2 1-4 1-5-1zM12 7c-2-1-4-1-5 1 2 1 4 1 5-1zM12 12c2-1 4-1 5 1-2 1-4 1-5-1zM12 12c-2-1-4-1-5 1 2 1 4 1 5-1z"/></g></symbol>
@@ -348,7 +349,10 @@
                 <button data-v="1" class="on">Normales</button>
                 <button data-v="2">Riches</button>
                 <button data-v="4">Opulentes</button>
+                <button data-v="10">Royales</button>
+                <button data-v="custom">Sur mesure</button>
               </div>
+              <div id="kf-rescustom" class="kf-rescustom" style="display:none"></div>
             </div><div class="opt">
               <label>👥 Habitants au départ</label>
               <div class="seg" data-key="startPop">
@@ -770,6 +774,7 @@
   </div>
 
   <audio id="menu-audio" src="assets/musics/main_menu.mp3" preload="auto" loop hidden></audio>
+  <script src="js/boot.js"></script>
   <script src="vendor/three.min.js"></script>
   <script src="vendor/GLTFLoader.js"></script>
   <script src="vendor/SkeletonUtils.js"></script>
@@ -805,6 +810,7 @@
   <script src="js/paques.js"></script>
 <script src="js/villageois.js"></script>
 <script src="js/commandes.js"></script>
+  <script src="js/adminpanel.js"></script>
   <script src="js/scale.js"></script>
   <script src="js/setup2.js"></script>
   <script src="js/intro2.js"></script>
