@@ -1,2 +1,4 @@
-# kingdoms-farm-releases
-Kingdoms Farm — archives du jeu téléchargées automatiquement par le launcher (aucun code source ici).
+# Kingdoms Farm — mises à jour
+
+Archives et fichiers du jeu téléchargés automatiquement par le launcher (PC) et l’appli (Android).
+Aucun code source ici.

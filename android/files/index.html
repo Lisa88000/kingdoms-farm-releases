@@ -1,0 +1,813 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <script>window.KF_ANDROID=true;</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0e0b07" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kingdoms Farm" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+  <title>Kingdoms Farm</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="intro-pending">
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <symbol id="i-food" viewBox="0 0 24 24"><g fill="#e9c15a" stroke="#8a6a1e" stroke-width="1"><path d="M12 3c1 3 1 15 0 18-1-3-1-15 0-18z"/><path d="M12 7c2-1 4-1 5 1-2 1-4 1-5-1zM12 7c-2-1-4-1-5 1 2 1 4 1 5-1zM12 12c2-1 4-1 5 1-2 1-4 1-5-1zM12 12c-2-1-4-1-5 1 2 1 4 1 5-1z"/></g></symbol>
+    <symbol id="i-wood" viewBox="0 0 24 24"><g stroke="#4e2e14" stroke-width="1"><rect x="3" y="8" width="18" height="8" rx="3" fill="#a86a3a"/><ellipse cx="19" cy="12" rx="2.4" ry="4" fill="#c98a4b"/><circle cx="19" cy="12" r="1.1" fill="#7c4a24"/></g></symbol>
+    <symbol id="i-stone" viewBox="0 0 24 24"><g stroke="#5a564d" stroke-width="1"><path d="M4 15l4-7 6-2 6 5-3 6-9 1z" fill="#b9b4a8"/><path d="M8 8l6-2-2 5z" fill="#d3cfc4"/></g></symbol>
+    <symbol id="i-gold" viewBox="0 0 24 24"><g stroke="#a9791a" stroke-width="1"><circle cx="12" cy="12" r="8" fill="#f2c944"/><circle cx="12" cy="12" r="5" fill="#f7dd7c"/><text x="12" y="16" font-size="8" text-anchor="middle" fill="#a9791a" font-family="serif" font-weight="bold">$</text></g></symbol>
+    <symbol id="i-pop" viewBox="0 0 24 24"><g fill="#8ab6ff" stroke="#3a63c4" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-7 8-7s8 2 8 7z"/></g></symbol>
+    <symbol id="i-army" viewBox="0 0 24 24"><g stroke="#4a5a6e" stroke-width="1.2"><path d="M4 4l9 9-2 2-9-9z" fill="#c9ced6"/><path d="M20 4l-9 9 2 2 9-9z" fill="#c9ced6"/><path d="M12 12l3 3-2 5-3-3z" fill="#8f96a3"/></g></symbol>
+  </defs></svg>
+
+  <div id="game-root">
+    <canvas id="gl"></canvas>
+    <canvas id="game"></canvas>
+
+    <div id="topbar">
+      <div class="res" title="Nourriture"><svg class="ico"><use href="#i-food"/></svg><span id="r-food">0</span></div>
+      <div class="res" title="Bois"><svg class="ico"><use href="#i-wood"/></svg><span id="r-wood">0</span></div>
+      <div class="res" title="Pierre"><svg class="ico"><use href="#i-stone"/></svg><span id="r-stone">0</span></div>
+      <div class="res" title="Or"><svg class="ico"><use href="#i-gold"/></svg><span id="r-gold">0</span></div>
+      <div class="res" title="Brai (poix)"><span style="font-size:14px">🛢️</span><span id="r-brai">0</span></div>
+      <div class="res hidden" id="res-science" title="Science (recherche)"><span style="font-size:14px">📚</span><span id="r-science">0</span></div>
+      <div class="res" title="Population"><svg class="ico"><use href="#i-pop"/></svg><span id="r-pop">0/0</span></div>
+      <div class="res" title="Soldats"><svg class="ico"><use href="#i-army"/></svg><span id="r-army">0</span></div>
+      <div id="hover-info" class="hidden"></div>
+      <div class="spacer"></div>
+      <div id="date-info" title="Saison et année (1 saison = 1 h)">🌱 Printemps · An 1</div>
+      <div id="wave-info">Vague <b id="wave-num">0</b> · <span id="wave-timer">--</span></div>
+      <button id="btn-tech" class="tb-btn hidden" title="Académie - arbre des technologies">🔬</button>
+      <button id="btn-world" class="tb-btn hidden" title="Carte du monde - villes à conquérir">🌍</button>
+      <button id="btn-admin" class="tb-btn hidden" title="Mode admin - panneau de test">🛠️</button>
+      <button id="btn-king" class="tb-btn" title="Sélectionner le souverain (talents / incarnation)">👑</button>
+      <button id="btn-save" class="tb-btn" title="Sauvegarder (Ctrl+S)">💾</button>
+      <div id="time-ctrl" class="time-ctrl" role="group" aria-label="Vitesse du temps">
+        <button id="btn-pause" class="tc-play" title="Pause / Reprendre (Espace)">⏸</button>
+        <button class="tc-step" data-d="-1" title="Ralentir (−)">−</button>
+        <div class="tc-pips" title="Vitesse du temps : clique un cran">
+          <button class="tc-pip" data-s="1" aria-label="Vitesse normale"></button><button class="tc-pip" data-s="2" aria-label="Vitesse ×2"></button><button class="tc-pip" data-s="3" aria-label="Vitesse ×3"></button>
+        </div>
+        <button class="tc-step" data-d="1" title="Accélérer (+)">+</button>
+      </div>
+      <button id="btn-mute" class="tb-btn" title="Activer / couper le son">🔊</button>
+      <button id="btn-menu" class="tb-btn" title="Menu (Échap)">☰</button>
+    </div>
+
+    <div id="minimap" class="hidden">
+      <div class="mm-head">🗺️ Cités <span class="dim" id="mm-hint">clic = voyager</span></div>
+      <div id="mm-list"></div>
+    </div>
+
+    <div id="adminpanel" class="hidden">
+      <div class="ap-head">🛠️ Mode admin <button id="ap-close">✕</button></div>
+      <div class="ap-body">
+        <button class="ap-btn" data-cheat="res">💰 +5000 ressources</button>
+        <button class="ap-btn" data-cheat="pop">👥 +50 population</button>
+        <button class="ap-btn" data-cheat="tech">🔬 Toutes les technologies</button>
+        <button class="ap-btn" data-cheat="build">⚡ Construction instantanée</button>
+        <button class="ap-btn" data-cheat="army">⚔️ +8 soldats</button>
+        <button class="ap-btn" data-cheat="siege">🏰 +armes de siège</button>
+        <button class="ap-btn" data-cheat="heal">❤️ Soigner tout</button>
+        <button class="ap-btn" data-cheat="god">🛡️ Invincibilité</button>
+        <button class="ap-btn" data-cheat="win">🏳️ Gagner la ville</button>
+        <button class="ap-btn" data-cheat="reveal">👁️ Révéler la carte</button>
+        <button class="ap-btn" data-cheat="nowave">🕊️ Stopper les vagues</button>
+        <button class="ap-btn" data-cheat="fast">⏩ Vitesse ×3</button>
+      </div>
+    </div>
+
+    <div id="side-panel" class="hidden">
+      <button id="panel-close">✕</button>
+      <h2 id="panel-title">-</h2>
+      <div id="panel-body"></div>
+    </div>
+
+    <div id="buildbar"></div>
+
+    <div id="toast" class="hidden"></div>
+
+    <div id="startscreen" class="overlay">
+      <div class="menu-card">
+        <div class="crest">🏰</div>
+        <h1>KINGDOMS&nbsp;FARM</h1>
+        <p class="tag" data-i18n="tagline">Bâtis ton château · récolte · défends ton royaume</p>
+
+        <div id="title-panel">
+          <div class="prealpha-badge" data-i18n="badge">🚧 Version Alpha 0.2.1f - préversion en développement · le contenu et l'équilibrage évoluent</div>
+          <div class="menu-actions col">
+            <button id="mm-play" class="btn-primary" data-i18n="mm_play">▶ Jouer</button>
+            <button id="mm-continue" class="btn-ghost hidden" data-i18n="mm_continue">▶ Continuer la sauvegarde</button>
+            <button id="mm-sandbox" class="btn-ghost" data-i18n="mm_sandbox">🏗️ Bac à sable (carte vierge)</button>
+            <button id="mm-settings" class="btn-ghost" data-i18n="mm_settings">⚙ Paramètres</button>
+            <button id="mm-terms" class="btn-ghost" data-i18n="mm_terms">📜 Conditions d'accès &amp; propriété</button>
+            <button id="mm-quit" class="btn-danger" data-i18n="mm_quit">✕ Quitter le jeu</button>
+          </div>
+          <div class="copyright" data-i18n="copyright">© C'Toutfaire 2026 - Tous droits réservés · Jeu en accès Alpha privé</div>
+        </div>
+
+        <div id="setup-panel" class="hidden">
+          <div class="kf-presets" id="setup-presets"><span>Préréglage</span><button type="button" data-preset="detente">🌿 Détente</button><button type="button" data-preset="classique" class="on">⚖️ Classique</button><button type="button" data-preset="batisseur">🏗️ Bâtisseur</button><button type="button" data-preset="guerre">⚔️ Seigneur de guerre</button><button type="button" data-preset="survie">💀 Survie</button><button type="button" data-preset="hasard">🎲 Surprise</button></div><nav class="setup-steps" aria-label="Création de partie"><button type="button" data-setup-step="0">1. Le monde</button><button type="button" data-setup-step="1">2. Ton royaume</button><button type="button" data-setup-step="2">3. Les règles</button><button type="button" data-setup-step="3">4. L'économie</button><button type="button" data-setup-step="4">5. Monde vivant</button><button type="button" data-setup-step="5">6. Défis & lignée</button><button type="button" data-setup-step="6">7. Récapitulatif</button></nav><div class="setup">
+
+          <section class="setup-step" data-step="0"><h2>Le monde</h2><p class="setup-description">Choisis le terrain de ton aventure.</p><div class="setup-grid"><div class="opt">
+              <label>Surface de la carte</label>
+              <div class="seg" data-key="size">
+                <button data-v="petite">Petite</button>
+                <button data-v="moyenne" class="on">Moyenne</button>
+                <button data-v="grande">Grande</button>
+                <button data-v="immense">Immense</button>
+                <button data-v="colossale">Colossale</button>
+              </div>
+            </div><div class="opt">
+              <label>Forme de la carte</label>
+              <div class="seg" data-key="shape">
+                <button data-v="continent" class="on">Continent</button>
+                <button data-v="iles">Îles</button>
+                <button data-v="peninsule">Péninsule</button>
+                <button data-v="vallee">Vallée</button>
+                <button data-v="lacs">Lacs</button>
+                <button data-v="cote">Côte</button>
+                <button data-v="detroit">Deux rives</button>
+                <button data-v="plateau">Haut plateau</button>
+                <button data-v="aleatoire">Aléatoire</button>
+              </div>
+            </div><div class="opt">
+              <label>Niveau de la mer</label>
+              <div class="seg" data-key="sea">
+                <button data-v="bas">Bas</button>
+                <button data-v="normal" class="on">Normal</button>
+                <button data-v="haut">Haut</button>
+              </div>
+            </div><div class="opt">
+              <label>Forêts</label>
+              <div class="seg" data-key="forests">
+                <button data-v="rares">Clairsemées</button>
+                <button data-v="normales" class="on">Normales</button>
+                <button data-v="denses">Denses</button>
+              </div>
+            </div><div class="opt">
+              <label>Rivières</label>
+              <div class="seg" data-key="rivers">
+                <button data-v="aucune">Aucune</button>
+                <button data-v="normales" class="on">Quelques-unes</button>
+                <button data-v="nombreuses">Nombreuses</button>
+              </div>
+            </div><div class="opt">
+              <label>Climat <span class="dim">(marais, prairies, terres arides)</span></label>
+              <div class="seg" data-key="climate">
+                <button data-v="sec">Sec</button>
+                <button data-v="tempere" class="on">Tempéré</button>
+                <button data-v="humide">Humide</button>
+              </div>
+            </div><div class="opt">
+              <label>Graine de la carte <span class="dim">(même graine = même carte, à partager entre amis)</span></label>
+              <div class="seed-row"><input id="map-seed" type="text" maxlength="12" placeholder="aléatoire" autocomplete="off"><button id="map-seed-rnd" class="btn-ghost" title="Nouvelle graine">🎲</button><button id="map-seed-go" class="btn-ghost" title="Aperçu">👁️ Aperçu</button></div>
+            </div><div class="opt">
+              <label>Calendrier <span class="dim">(durée d'un mois · 12 mois par an, 3 par saison)</span></label>
+              <div class="seg" data-key="monthLen">
+                <button data-v="5">5 min</button>
+                <button data-v="10">10 min</button>
+                <button data-v="20" class="on">20 min</button>
+                <button data-v="40">40 min</button>
+              </div>
+            </div><div class="opt">
+              <label>Brouillard de guerre <span class="dim">(explore la carte avec tes éclaireurs)</span></label>
+              <div class="seg" data-key="fog">
+                <button data-v="on" class="on">🌫️ Activé</button>
+                <button data-v="off">🗺️ Carte visible</button>
+              </div>
+            </div><div class="opt">
+              <label>Saisons <span class="dim">(hiver, gel, récoltes, vie des villageois)</span></label>
+              <div class="seg" data-key="seasons">
+                <button data-v="on" class="on">❄️ Activées</button>
+                <button data-v="off">🌱 Printemps éternel</button>
+              </div>
+            </div><div class="opt">
+              <label>Biome <span class="dim">(ambiance &amp; couleurs du monde)</span></label>
+              <div class="seg" data-key="biome">
+                <button data-v="verdoyant" class="on">🌳 Verdoyant</button>
+                <button data-v="desert">🏜️ Désert</button>
+                <button data-v="enneige">❄️ Enneigé</button>
+              </div>
+            </div><div class="opt">
+              <label>Relief <span class="dim">(collines &amp; montagnes - modifiable en jeu)</span></label>
+              <div class="seg" data-key="relief">
+                <button data-v="plat">Plat</button>
+                <button data-v="vallonne" class="on">Vallonné</button>
+                <button data-v="montagneux">Montagneux</button>
+              </div>
+            </div><div class="opt">
+              <label>Abondance des ressources</label>
+              <div class="seg" data-key="abundance">
+                <button data-v="rare">Rare</button>
+                <button data-v="normale" class="on">Normale</button>
+                <button data-v="abondante">Abondante</button>
+              </div>
+            </div><div class="opt">
+              <label>🌍 Villes rivales à conquérir <span class="dim">(chacune sa carte, elles évoluent avec toi)</span></label>
+              <div class="seg" data-key="worldCities">
+                <button data-v="0" class="on">Aucune</button>
+                <button data-v="2">2</button>
+                <button data-v="4">4</button>
+                <button data-v="6">6</button>
+                <button data-v="8">8</button>
+              </div>
+            </div></div></section><section class="setup-step" data-step="1"><h2>Ton royaume</h2><p class="setup-description">Donne une identité à ton royaume et à son souverain.</p><div class="setup-grid"><div class="opt">
+              <label>Style du donjon <span class="dim">(tu choisiras où le poser en jeu)</span></label>
+              <div class="seg" data-key="keep">
+                <button data-v="manoir">🛖 Manoir</button>
+                <button data-v="castle" class="on">🏰 Château</button>
+                <button data-v="keep">🗼 Donjon</button>
+                <button data-v="fort">🏯 Forteresse</button>
+              </div>
+            </div><div class="opt opt-wide">
+              <label>Ton souverain <span class="dim">(héros - s'il meurt, la partie est perdue)</span></label>
+              <div class="setup-lord">
+                <canvas id="setup-lord-3d" width="150" height="180" aria-hidden="true"></canvas>
+                <div class="setup-lord-info"><div id="setup-lord-sum" class="setup-lord-sum"></div>
+                  <button type="button" id="setup-lord-btn" class="btn-primary">🎨 Personnaliser mon souverain</button></div>
+              </div>
+            </div><div class="opt">
+              <label>Couleur du royaume <span class="dim">(capes des troupes &amp; fanions)</span></label>
+              <div id="banner-swatches" style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="swatch on" data-c="#c0392b" style="background:#c0392b"></button>
+                <button class="swatch" data-c="#2c6fb0" style="background:#2c6fb0"></button>
+                <button class="swatch" data-c="#2e8b57" style="background:#2e8b57"></button>
+                <button class="swatch" data-c="#7d3cc0" style="background:#7d3cc0"></button>
+                <button class="swatch" data-c="#e0a020" style="background:#e0a020"></button>
+                <button class="swatch" data-c="#111418" style="background:#111418"></button>
+                <button class="swatch" data-c="#d9d9d9" style="background:#d9d9d9"></button>
+              </div>
+            </div><div class="opt">
+              <label>🛡️ Blason du royaume <span class="dim">(crée tes armoiries - elles teintent capes &amp; bannières)</span></label>
+              <div id="setup-blason"></div>
+            </div><div class="opt">
+              <label>🏰 Nom de la cité <span class="dim">(facultatif)</span></label>
+              <input type="text" id="village-name" placeholder="Nom de ta cité (ex. Belleroche)" maxlength="24" style="width:100%;padding:9px 10px;border-radius:9px;border:1px solid rgba(232,193,90,.28);background:linear-gradient(180deg,#33260f,#20160a);color:var(--ink);font-size:13px">
+            </div></div></section><section class="setup-step" data-step="2"><h2>Les règles</h2><p class="setup-description">Adapte les défis à ta façon de jouer.</p><div class="setup-grid"><div class="opt">
+              <label>Difficulté</label>
+              <div class="seg" data-key="difficulty">
+                <button data-v="facile">Facile</button>
+                <button data-v="normal" class="on">Normale</button>
+                <button data-v="difficile">Difficile</button>
+              </div>
+            </div><div class="opt">
+              <label>Attaques ennemies</label>
+              <div class="seg" data-key="attacks">
+                <button data-v="on" class="on">Activées</button>
+                <button data-v="off">Désactivées (paisible)</button>
+              </div>
+            </div><div class="opt">
+              <label>⚔️ Soldats de départ <span class="dim">(en plus du souverain)</span></label>
+              <div class="seg" data-key="startArmy">
+                <button data-v="0" class="on">Aucun</button>
+                <button data-v="2">2</button>
+                <button data-v="4">4</button>
+                <button data-v="6">6</button>
+                <button data-v="10">10</button>
+                <button data-v="15">15</button>
+                <button data-v="20">20</button>
+              </div>
+            </div><div class="opt">
+              <label>♻️ Remboursement à la démolition <span class="dim">(part des ressources rendue)</span></label>
+              <div class="seg" data-key="refund">
+                <button data-v="0">0%</button>
+                <button data-v="25">25%</button>
+                <button data-v="50" class="on">50%</button>
+                <button data-v="75">75%</button>
+                <button data-v="100">100%</button>
+              </div>
+            </div><div class="opt">
+              <label>Catastrophes météo <span class="dim">(orage, tornade, séisme, inondation)</span></label>
+              <div class="seg" data-key="weather">
+                <button data-v="on" class="on">Activées</button>
+                <button data-v="off">Désactivées</button>
+              </div>
+            </div><div class="opt">
+              <label>Maladies <span class="dim">(épidémies - un apothicaire les soigne)</span></label>
+              <div class="seg" data-key="disease">
+                <button data-v="off" class="on">Désactivées</button>
+                <button data-v="on">Activées</button>
+              </div>
+            </div><div class="opt">
+              <label>🏆 Objectif de la partie <span class="dim">(comment gagner)</span></label>
+              <div class="seg" data-key="goal">
+                <button data-v="vagues12" class="on">Survivre à 12 vagues</button>
+                <button data-v="vagues25">Survivre à 25 vagues</button>
+                <button data-v="sacre">Le sacre royal</button>
+                <button data-v="libre">Sans fin (bac à règne)</button>
+              </div>
+            </div><div class="opt">
+              <label>👹 Taille des vagues <span class="dim">(nombre d’ennemis)</span></label>
+              <div class="seg" data-key="waveSize">
+                <button data-v="0.6">Petites</button>
+                <button data-v="1" class="on">Normales</button>
+                <button data-v="1.5">Grandes</button>
+                <button data-v="2">Immenses</button>
+              </div>
+            </div><div class="opt">
+              <label>⏳ Répit entre les vagues</label>
+              <div class="seg" data-key="waveGap">
+                <button data-v="1.5">Long</button>
+                <button data-v="1" class="on">Normal</button>
+                <button data-v="0.7">Court</button>
+              </div>
+            </div><div class="opt">
+              <label>🌅 Première attaque <span class="dim">(le temps de t’installer)</span></label>
+              <div class="seg" data-key="firstWave">
+                <button data-v="2">Tardive</button>
+                <button data-v="1" class="on">Normale</button>
+                <button data-v="0.6">Précoce</button>
+              </div>
+            </div><div class="opt">
+              <label>🔓 Bâtiments disponibles</label>
+              <div class="seg" data-key="unlock">
+                <button data-v="ages" class="on">Par âges du royaume (conseillé)</button>
+                <button data-v="tout">Tout dès le départ</button>
+              </div>
+            </div><div class="opt">
+              <label>🧭 Conseiller du royaume <span class="dim">(tutoriel et conseils)</span></label>
+              <div class="seg" data-key="guide">
+                <button data-v="auto" class="on">Pour ma première partie</button><button data-v="on">Toujours</button>
+                <button data-v="off">Jamais</button>
+              </div>
+            </div><div class="opt">
+              <label>🗝️ Code secret <span class="dim">(laisse vide pour une partie normale)</span></label>
+              <input type="text" id="admin-code" placeholder="Code…" maxlength="24" autocomplete="off" style="width:100%;padding:9px 10px;border-radius:9px;border:1px solid rgba(232,193,90,.28);background:linear-gradient(180deg,#33260f,#20160a);color:var(--ink);font-size:13px;letter-spacing:1px">
+              <div id="admin-hint" class="dim" style="margin-top:6px;font-size:12px">&nbsp;</div>
+            </div></div></section><section class="setup-step" data-step="3"><h2>L'économie</h2><p class="setup-description">Règle l'abondance et le rythme de ton royaume.</p><div class="setup-grid"><div class="opt">
+              <label>💰 Ressources de départ</label>
+              <div class="seg" data-key="startRes">
+                <button data-v="0.5">Maigres</button>
+                <button data-v="1" class="on">Normales</button>
+                <button data-v="2">Riches</button>
+                <button data-v="4">Opulentes</button>
+              </div>
+            </div><div class="opt">
+              <label>👥 Habitants au départ</label>
+              <div class="seg" data-key="startPop">
+                <button data-v="6">6</button>
+                <button data-v="12" class="on">12</button>
+                <button data-v="20">20</button>
+                <button data-v="30">30</button>
+              </div>
+            </div><div class="opt">
+              <label>🔨 Vitesse des chantiers</label>
+              <div class="seg" data-key="buildSpeed">
+                <button data-v="0.7">Lente</button>
+                <button data-v="1" class="on">Normale</button>
+                <button data-v="1.5">Rapide</button>
+                <button data-v="2.5">Éclair</button>
+              </div>
+            </div><div class="opt">
+              <label>🌾 Production <span class="dim">(récoltes, bois, pierre)</span></label>
+              <div class="seg" data-key="prodMul">
+                <button data-v="0.75">Avare</button>
+                <button data-v="1" class="on">Normale</button>
+                <button data-v="1.3">Généreuse</button>
+                <button data-v="1.7">Abondante</button>
+              </div>
+            </div><div class="opt">
+              <label>🪙 Or et commerce <span class="dim">(impôts, marchés, mines)</span></label>
+              <div class="seg" data-key="goldMul">
+                <button data-v="0.75">Rare</button>
+                <button data-v="1" class="on">Normal</button>
+                <button data-v="1.3">Florissant</button>
+                <button data-v="1.6">Pactole</button>
+              </div>
+            </div><div class="opt">
+              <label>📦 Capacité des réserves <span class="dim">(greniers et entrepôts)</span></label>
+              <div class="seg" data-key="storeMul">
+                <button data-v="1" class="on">Normale</button>
+                <button data-v="1.5">Grande</button>
+                <button data-v="2">Immense</button>
+              </div>
+            </div></div></section><section class="setup-step" data-step="4"><h2>Le monde vivant</h2><p class="setup-description">Choisis les dangers et les histoires qui animent tes terres.</p><div class="setup-grid"><div class="opt">
+              <label>🐺 Loups et meutes <span class="dim">(surtout l’hiver)</span></label>
+              <div class="seg" data-key="wolves">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🦊 Faune sauvage <span class="dim">(renards, sangliers, aigles)</span></label>
+              <div class="seg" data-key="wildlife">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🐀 Vermine <span class="dim">(meutes de rats dans les réserves)</span></label>
+              <div class="seg" data-key="vermin">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🌲 Ressources épuisables <span class="dim">(forêts, gibier, glissements de terrain)</span></label>
+              <div class="seg" data-key="depletion">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🃏 La pègre <span class="dim">(guilde des voleurs, contrebande)</span></label>
+              <div class="seg" data-key="underworld">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🔥 Révoltes paysannes <span class="dim">(si le peuple souffre trop longtemps)</span></label>
+              <div class="seg" data-key="revolts">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🌊 Tempêtes en mer <span class="dim">(navires en péril sans phare)</span></label>
+              <div class="seg" data-key="seaStorms">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🏴‍☠️ Brigands et pirates <span class="dim">(raids et débarquements)</span></label>
+              <div class="seg" data-key="bandits">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🎃 Fêtes de saison <span class="dim">(Pâques, Nuit des Revenants, Marché de Noël)</span></label>
+              <div class="seg" data-key="seasonEvents">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🐉 Légendes <span class="dim">(contes d’hiver, secrets, dragon)</span></label>
+              <div class="seg" data-key="legends">
+                <button data-v="on" class="on">Activé</button>
+                <button data-v="off">Désactivé</button>
+              </div>
+            </div><div class="opt">
+              <label>🕊️ Seigneurs rivaux</label>
+              <div class="seg" data-key="rivals">
+                <button data-v="rancuniers" class="on">Rancuniers</button>
+                <button data-v="placides">Placides</button>
+              </div>
+            </div></div></section><section class="setup-step" data-step="5"><h2>Défis & lignée</h2><p class="setup-description">Un défi pour la gloire, un héritage de tes ancêtres.</p><div class="setup-grid"><div id="setup-chal-host" class="kf-chal-host"></div></div></section><section class="setup-step" data-step="6"><h2>Récapitulatif</h2><p class="setup-description">Tout est prêt ? Vérifie ton royaume avant de commencer.</p><div class="setup-grid"><div id="setup-recap" class="kf-recap"></div></div></section></div>
+          <div class="menu-actions"><button id="btn-back-title" class="btn-ghost">← Retour</button>
+            <button id="setup-prev" class="btn-ghost">Précédent</button>
+            <button id="btn-regen" class="btn-ghost" title="Générer un nouvel aperçu de carte">🎲 Nouvelle carte</button>
+            <button id="setup-next" class="btn-primary">Suivant</button>
+            <button id="btn-start" class="btn-primary">⚔ Commencer</button>
+          </div>
+        </div>
+
+        <p class="controls" data-i18n="controls">Caméra : <b>WASD</b> / clic-droit (rotation) · Molette : zoom · <b>Échap</b> : menu</p>
+      </div>
+    </div>
+
+    <div id="termsscreen" class="overlay hidden">
+      <div class="menu-card" style="width:min(820px,95vw);text-align:left">
+        <div class="crest">📜</div>
+        <h1 style="font-size:clamp(20px,3vw,30px)">Conditions, propriété &amp; sécurité</h1>
+        <p class="tag" style="text-align:center">Kingdoms Farm - Alpha privée (préversion) v0.2.1f · à lire avant de jouer</p>
+        <div class="terms-body" id="terms-body">
+          <div class="terms-sec">1 · Nature du logiciel</div>
+          <p>Kingdoms Farm est un jeu <b>en développement (Alpha)</b>. Cette préversion est incomplète : contenu, équilibrage, interfaces et sauvegardes <b>peuvent changer, être réinitialisés ou comporter des bugs</b> à tout moment. Le logiciel est fourni « en l'état », sans garantie.</p>
+          <div class="terms-sec">2 · Conditions d'accès</div>
+          <p>L'accès à cette Alpha est <b>personnel, privé et gratuit</b>, réservé aux testeurs invités. Tu t'engages à :</p>
+          <ul>
+            <li>ne pas <b>redistribuer, revendre, publier ou partager</b> l'exécutable ou les fichiers du jeu ;</li>
+            <li>ne pas <b>décompiler</b> ni extraire les ressources pour un usage externe ;</li>
+            <li>utiliser le jeu à des <b>fins de test et de loisir</b> uniquement.</li>
+          </ul>
+          <div class="terms-sec">3 · Propriété intellectuelle</div>
+          <p>Le jeu, son code, son nom, ses visuels et son univers demeurent la <b>propriété exclusive de leur auteur (C'Toutfaire)</b>. Les ressources tierces (modèles, textures) sont utilisées sous licence <b>CC0</b> et créditées dans le jeu. Aucun droit de propriété n'est cédé par le présent accès.</p>
+          <div class="terms-sec">4 · Retours &amp; captures</div>
+          <p>Tu peux partager <b>captures d'écran et vidéos</b> de tes parties et donner ton avis. En transmettant des retours, tu autorises l'auteur à les utiliser librement pour améliorer le jeu, sans contrepartie.</p>
+          <div class="terms-sec">5 · Données</div>
+          <p>Le jeu s'exécute <b>localement</b> sur ta machine. Les sauvegardes et réglages restent sur ton ordinateur ; aucune donnée personnelle n'est collectée par le jeu.</p>
+          <div class="terms-sec">6 · Responsabilité</div>
+          <p>L'auteur ne saurait être tenu responsable d'un éventuel dysfonctionnement, perte de sauvegarde ou dommage lié à l'usage de cette préversion.</p>
+
+          <div class="terms-sec">7 · ⚠️ Avertissement santé - crises d'épilepsie photosensible</div>
+          <p><b>À lire avant de jouer.</b> Un très faible pourcentage de personnes peut subir une crise lorsqu'elles sont exposées à certains motifs ou lumières clignotantes, y compris pendant un jeu vidéo, même sans antécédent d'épilepsie. Si vous, ou un membre de votre famille, avez déjà présenté des symptômes liés à l'épilepsie (crises, pertes de conscience), <b>consultez un médecin avant de jouer</b>.</p>
+          <p><b>Cessez immédiatement de jouer et consultez un médecin</b> si vous ressentez l'un de ces symptômes : vertiges, troubles de la vision, contractions des yeux ou des muscles, perte de conscience, désorientation, mouvements involontaires ou convulsions.</p>
+          <div class="terms-sec">8 · Conseils d'usage &amp; bien-être</div>
+          <ul>
+            <li>Jouez dans une pièce <b>bien éclairée</b> et tenez-vous à bonne distance de l'écran.</li>
+            <li>Faites une <b>pause de 10 à 15 minutes par heure</b> de jeu.</li>
+            <li>Ne jouez pas si vous êtes <b>fatigué</b> ou en manque de sommeil ; hydratez-vous.</li>
+            <li>Arrêtez en cas de <b>douleur ou gêne</b> aux mains, poignets, yeux ou tête, et reposez-vous.</li>
+            <li>Jeu déconseillé sans supervision aux <b>jeunes enfants</b> ; surveillez le temps de jeu.</li>
+          </ul>
+          <div class="terms-sec">9 · Conditions générales d'utilisation &amp; accord de principe</div>
+          <p>L'installation et l'utilisation du jeu <b>valent acceptation</b> des présentes conditions. Il t'est accordé une <b>licence personnelle, non exclusive et non transférable</b> d'utiliser le jeu à des fins de divertissement privé. Tu t'engages à ne pas <b>tricher au détriment d'autrui, exploiter des failles de façon abusive, contourner les protections</b>, ni utiliser le logiciel à des fins illégales. Le jeu peut être <b>mis à jour ou modifié</b> à tout moment ; sa disponibilité n'est pas garantie. Il est fourni « <b>en l'état</b> », sans garantie d'aucune sorte, et son usage relève de ta seule responsabilité.</p>
+        </div>
+        <label class="terms-check" id="terms-check-row"><input type="checkbox" id="terms-accept-chk"> J'ai lu et j'accepte ces conditions, l'avertissement santé et les conditions d'utilisation.</label>
+        <div class="menu-actions">
+          <button id="terms-accept" class="btn-primary" disabled>✔ Accepter et continuer</button>
+          <button id="terms-close" class="btn-ghost hidden">← Fermer</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="demobanner" class="hidden">
+      <span id="demobanner-txt">🔓 Version DÉMO</span>
+      <button id="demobanner-code" class="db-code">Entrer un code</button>
+    </div>
+
+    <div id="demolock" class="overlay hidden">
+      <div class="menu-card small" style="text-align:center">
+        <div class="crest">🔒</div>
+        <h1 id="demolock-title">Démo terminée</h1>
+        <p class="tag" id="demolock-sub">Ta période d'essai d'une semaine est écoulée.</p>
+        <p style="font-size:13px;color:#e8dcc2;margin:6px 0 14px">Saisis ton <b>code de déverrouillage</b> pour débloquer la version intégrale, ou procure-toi la version complète.</p>
+        <input type="text" id="demolock-input" placeholder="Code…" maxlength="32" autocomplete="off"
+               style="width:100%;padding:11px 12px;border-radius:9px;border:1px solid rgba(232,193,90,.4);background:linear-gradient(180deg,#33260f,#20160a);color:var(--ink);font-size:15px;letter-spacing:2px;text-align:center" />
+        <div id="demolock-err" class="dim" style="min-height:16px;font-size:12px;margin-top:6px;color:#e6604c"></div>
+        <div class="menu-actions">
+          <button id="demolock-unlock" class="btn-primary">🔓 Déverrouiller</button>
+          <button id="demolock-quit" class="btn-danger">✕ Quitter</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="pausemenu" class="overlay hidden">
+      <div class="menu-card small">
+        <div class="crest">⚙️</div>
+        <h1 data-i18n="pause_title">Menu</h1>
+        <div class="menu-actions col">
+          <button id="pm-resume" class="btn-primary" data-i18n="pm_resume">▶ Reprendre</button>
+          <button id="pm-save" class="btn-ghost" data-i18n="pm_save">💾 Sauvegarder la partie</button>
+          <button id="pm-load" class="btn-ghost" data-i18n="pm_load">📂 Charger une partie</button>
+          <button id="pm-settings" class="btn-ghost" data-i18n="pm_settings">⚙ Paramètres</button>
+          <button id="pm-bug" class="btn-ghost">🐞 Signaler un bug</button>
+          <button id="pm-quit" class="btn-ghost" data-i18n="pm_quit">🏳 Quitter la partie (menu)</button>
+          <button id="pm-exit" class="btn-danger" data-i18n="pm_exit">✕ Retour à Windows</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="settingsmenu" class="overlay hidden">
+      <div class="menu-card small">
+        <div class="crest">🎚️</div>
+        <h1 data-i18n="set_title">Paramètres</h1>
+        <div class="settabs">
+          <button type="button" class="settab-btn on" data-tab="audio" data-i18n="tab_audio">🔊 Audio</button>
+          <button type="button" class="settab-btn" data-tab="gfx" data-i18n="tab_gfx">🖥️ Graphismes</button>
+          <button type="button" class="settab-btn" data-tab="controls" data-i18n="tab_controls">⌨️ Commandes</button>
+          <button type="button" class="settab-btn" data-tab="other" data-i18n="tab_other">⚙️ Autre</button>
+        </div>
+        <div class="settab-panel setup on" data-tab="audio">
+          <div class="opt">
+            <label>Son <span id="set-sound-state" class="dim"></span></label>
+            <div class="seg" data-key="sound">
+              <button data-v="on" class="on">Activé</button>
+              <button data-v="off">Coupé</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Musique <span class="dim">(bande sonore médiévale)</span></label>
+            <div class="seg" data-key="music">
+              <button data-v="on" class="on">Activée</button>
+              <button data-v="off">Coupée</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Volume : <span id="set-vol-val">35%</span></label>
+            <input type="range" id="set-volume" min="0" max="100" value="35" />
+          </div>
+        </div>
+        <div class="settab-panel setup" data-tab="gfx">
+          <div class="opt">
+            <label>Préréglage graphique <span class="dim">(choisis selon ta machine - règle tout d'un coup)</span></label>
+            <div class="seg" data-key="gfxPreset">
+              <button data-v="perf">🪶 Performance</button>
+              <button data-v="balanced" class="on">⚖️ Équilibré</button>
+              <button data-v="quality">✨ Qualité</button>
+            </div>
+            <div class="dim" style="margin-top:6px;font-size:12px">Performance : idéal PC modestes · Qualité : ombres 4K, mer retravaillée, effets complets.</div>
+          </div>
+          <div class="opt-sub">Réglages avancés</div>
+          <div class="opt">
+            <label>Niveau graphique</label>
+            <div class="seg" data-key="quality">
+              <button data-v="standard" class="on">Standard</button>
+              <button data-v="ultra">✨ Ultra</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Effets &amp; particules <span class="dim">(pluie, étincelles, débris)</span></label>
+            <div class="seg" data-key="effects">
+              <button data-v="low">Réduits</button>
+              <button data-v="normal" class="on">Normaux</button>
+              <button data-v="high">Complets</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Qualité des ombres</label>
+            <div class="seg" data-key="shadows">
+              <button data-v="high" class="on">Élevée</button>
+              <button data-v="low">Basse</button>
+            </div>
+          </div>
+          <div class="opt-sub">Affichage</div>
+          <div class="opt">
+            <label>Mode d'écran</label>
+            <div class="seg" data-key="screenMode">
+              <button data-v="windowed" class="on">🪟 Fenêtré</button>
+              <button data-v="borderless">🖼️ Fenêtré plein écran</button>
+              <button data-v="fullscreen">🖥️ Plein écran</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Résolution <span class="dim">(taille de la fenêtre de jeu - en mode fenêtré)</span></label>
+            <div class="seg" data-key="resolution">
+              <button data-v="1280x720">1280×720</button>
+              <button data-v="1366x768">1366×768</button>
+              <button data-v="1600x900" class="on">1600×900</button>
+              <button data-v="1920x1080">1920×1080 (Full HD)</button>
+              <button data-v="2560x1440">2560×1440 (2K)</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>HDR <span class="dim">(couleurs plus éclatantes et contrastées)</span></label>
+            <div class="seg" data-key="hdr">
+              <button data-v="off">Désactivé</button>
+              <button data-v="on" class="on">✨ Activé</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Bloom &amp; vignette <span class="dim">(halos lumineux et coins assombris - plus cinématographique)</span></label>
+            <div class="seg" data-key="bloom">
+              <button data-v="off">Désactivé</button>
+              <button data-v="on" class="on">🌟 Activé</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Réflexions du ciel <span class="dim">(l'eau et les surfaces polies reflètent le ciel)</span></label>
+            <div class="seg" data-key="reflections">
+              <button data-v="off">Désactivé</button>
+              <button data-v="on" class="on">💧 Activé</button>
+            </div>
+          </div>
+        </div>
+        <div class="settab-panel setup" data-tab="controls">
+          <div class="opt">
+            <label>Disposition du clavier</label>
+            <div class="seg" data-key="kbLayout">
+              <button data-v="azerty" class="on">🇫🇷 AZERTY (ZQSD)</button>
+              <button data-v="qwerty">🇬🇧 QWERTY (WASD)</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Touches <span class="dim">(clique une action puis presse la nouvelle touche)</span></label>
+            <div id="keybinds"></div>
+          </div>
+        </div>
+        <div class="settab-panel setup" data-tab="other">
+          <div class="opt">
+            <label data-i18n="set_lang">Langue <span class="dim" data-i18n="set_lang_hint">(langue du jeu)</span></label>
+            <div class="seg" data-key="lang">
+              <button data-v="fr" class="on">🇫🇷 Français</button>
+              <button data-v="en">🇬🇧 English</button>
+              <button data-v="es">🇪🇸 Español</button>
+              <button data-v="de">🇩🇪 Deutsch</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label data-i18n="set_legal">Conditions &amp; sécurité <span class="dim" data-i18n="set_legal_hint">(accès, propriété, santé - épilepsie)</span></label>
+            <button type="button" id="set-terms" class="btn-ghost" data-i18n="set_legal_btn">📜 Lire les conditions &amp; l'avertissement santé</button>
+          </div>
+          <div class="opt">
+            <label data-i18n="set_credits">Crédits <span class="dim" data-i18n="set_credits_hint">(équipe &amp; ressources)</span></label>
+            <button type="button" id="set-credits-btn" class="btn-ghost" data-i18n="set_credits_btn">🏅 Voir les crédits</button>
+          </div>
+          <div class="opt">
+            <label>Intro cinématique <span class="dim">(survol du château au lancement)</span></label>
+            <div class="seg" data-key="skipIntro">
+              <button data-v="off" class="on">Afficher</button>
+              <button data-v="on">Passer</button>
+            </div>
+          </div>
+          <div class="opt">
+            <label>Version <span class="dim">(numéro de build du jeu)</span></label>
+            <div class="dim" id="set-version" style="font-size:14px;padding:6px 0">Kingdoms Farm v0.2.1f · Alpha (préversion)</div>
+          </div>
+          <div class="opt">
+            <label>Réinitialiser <span class="dim">(revenir aux réglages graphiques et audio par défaut)</span></label>
+            <button type="button" id="set-reset" class="btn-ghost">↺ Réglages par défaut</button>
+          </div>
+        </div>
+        <div class="menu-actions"><button id="set-back" class="btn-primary" data-i18n="set_back">← Retour</button></div>
+      </div>
+    </div>
+
+    <div id="creditsscreen" class="overlay hidden">
+      <div class="menu-card" style="width:min(720px,94vw);text-align:center">
+        <div class="crest">🏅</div>
+        <h1 data-i18n="credits_title">Crédits</h1>
+        <p class="tag" data-i18n="credits_sub">Kingdoms Farm - un jeu C'Toutfaire</p>
+        <div class="terms-body" id="credits-body" style="text-align:center">
+          <div class="terms-sec" style="text-align:center" data-i18n="credits_lead">Création, direction artistique, game design &amp; programmation</div>
+          <p style="text-align:center;font-size:20px;color:var(--gold,#e8c163);font-weight:800;letter-spacing:1px;margin:4px 0 2px">Lisa</p>
+          <p style="text-align:center;margin:0 0 10px">Studio <b>C'Toutfaire</b></p>
+          <p style="text-align:center;font-size:12px;color:#b9a67e" data-i18n="credits_lisa_role">Créatrice &amp; codeuse principale - conception, code, univers, graphismes.</p>
+
+          <div class="terms-sec" style="text-align:center" data-i18n="credits_thanks">Remerciements</div>
+          <p style="text-align:center" data-i18n="credits_thanks_txt">Merci aux testeurs de l'Alpha pour leurs retours qui font grandir le royaume. 👑</p>
+
+          <div class="terms-sec" style="text-align:center" data-i18n="credits_assets">Ressources &amp; technologies (sous licence)</div>
+          <ul style="list-style:none;padding:0;text-align:center;line-height:1.9">
+            <li>Moteur 3D - <b>Three.js</b> <span class="dim">(licence MIT)</span></li>
+            <li>Modèles 3D - <b>KayKit</b> (Medieval Hexagon, Dungeon Remastered, Furniture Bits), Kay Lousberg <span class="dim">(CC0)</span></li>
+            <li>Textures PBR - <b>Poly Haven</b> <span class="dim">(CC0)</span></li>
+            <li>Sprites hérités - <b>Kenney</b> <span class="dim">(CC0)</span></li>
+            <li>Armes de siège - <b>Kenney</b>, Castle Kit <span class="dim">(CC0)</span></li>
+            <li>Navires - <b>Kenney</b>, Pirate Kit <span class="dim">(CC0)</span></li>
+            <li>Étals et lieux de culte modulaires - <b>Kenney</b>, Fantasy Town Kit <span class="dim">(CC0)</span></li>
+            <li>Cimetière, tombes et crypte - <b>Kenney</b>, Graveyard Kit <span class="dim">(CC0)</span></li>
+            <li>Animaux animés et dragon - <b>Quaternius</b>, Ultimate Animated Animals <span class="dim">(CC0)</span></li>
+            <li>Musiques en partie - <b>RandomMind</b>, OpenGameArt <span class="dim">(CC0)</span></li>
+          </ul>
+          <p style="text-align:center;font-size:12px;color:#b9a67e" data-i18n="credits_cc0">Ressources tierces sous licence CC0 / MIT - aucune attribution requise, citée par courtoisie.</p>
+        </div>
+        <p class="copyright" style="text-align:center">© C'Toutfaire 2026 - <span data-i18n="credits_rights">Tous droits réservés</span></p>
+        <div class="menu-actions"><button id="credits-close" class="btn-primary" data-i18n="set_back">← Retour</button></div>
+      </div>
+    </div>
+
+    <div id="endscreen" class="overlay hidden">
+      <div class="menu-card small">
+        <div class="crest" id="end-crest">🏳</div>
+        <h1 id="end-title">Royaume tombé</h1>
+        <p class="tag" id="end-sub"></p>
+        <div class="menu-actions"><button id="btn-restart" class="btn-primary" data-i18n="end_restart">⚔ Nouvelle partie</button></div>
+      </div>
+    </div>
+
+    <div id="techscreen" class="overlay hidden">
+      <div class="menu-card" style="width:min(880px,95vw)">
+        <div class="crest">🔬</div>
+        <h1 style="font-size:30px">Académie des sciences</h1>
+        <p class="tag">Science disponible : <b id="tech-science">0</b> 📚 - recherche des technologies pour débloquer bâtiments et bonus.</p>
+        <div id="tech-grid"></div>
+        <div class="menu-actions"><button id="tech-close" class="btn-ghost">↩ Retour au jeu</button></div>
+      </div>
+    </div>
+
+    <div id="worldscreen" class="overlay hidden">
+      <div class="menu-card" style="width:min(760px,94vw)">
+        <div class="crest">🌍</div>
+        <h1 style="font-size:30px">Carte du monde</h1>
+        <p class="tag">Chaque ville a sa carte. Conquiers-les toutes - elles se développent en même temps que toi.</p>
+        <div id="world-map"></div>
+        <div class="menu-actions"><button id="world-close" class="btn-ghost">↩ Retour au jeu</button></div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="menu-audio" src="assets/musics/main_menu.mp3" preload="auto" loop hidden></audio>
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/GLTFLoader.js"></script>
+  <script src="vendor/SkeletonUtils.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/i18n2.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/render3d.js"></script>
+  <script src="js/majandroid.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/savewipe.js"></script>
+  <script src="js/bugreport.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/mapgen.js"></script>
+  <script src="js/features.js"></script>
+  <script src="js/features2.js"></script>
+  <script src="js/production.js"></script>
+  <script src="js/features3.js"></script>
+  <script src="js/royaume.js"></script>
+  <script src="js/cimetiere.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/uiprefs.js"></script>
+  <script src="js/interiors.js"></script>
+  <script src="js/castles.js"></script>
+  <script src="js/starter.js"></script>
+  <script src="js/beasts.js"></script>
+  <script src="js/realmbook.js"></script>
+  <script src="js/portals.js"></script>
+  <script src="js/grimoire2.js"></script>
+  <script src="js/diplomacy2.js"></script>
+  <script src="js/deco.js"></script>
+  <script src="js/confort.js"></script>
+  <script src="js/histoire.js"></script>
+  <script src="js/paques.js"></script>
+<script src="js/villageois.js"></script>
+<script src="js/commandes.js"></script>
+  <script src="js/scale.js"></script>
+  <script src="js/setup2.js"></script>
+  <script src="js/intro2.js"></script>
+  <script src="js/mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Animaux 3D : Quaternius (https://quaternius.com) — licence CC0 1.0 (domaine public).
+Sources : poly.pizza (Ultimate Animated Animals, Farm Animals, Rat, Dragon) et OpenGameArt
+(Animal Pack Vol.2 : aigle et chat, convertis de FBX en GLB).
+Utilisation libre, y compris commerciale, sans attribution obligatoire. Merci à Quaternius !

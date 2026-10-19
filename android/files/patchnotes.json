@@ -1,0 +1,361 @@
+{
+  "_comment": "Notes de version affichées automatiquement dans le launcher. Édite ce fichier et pousse-le : tous les joueurs voient la mise à jour au prochain lancement. tag ∈ new|fix|balance|tech.",
+  "entries": [
+    {
+      "version": "0.2.1f",
+      "date": "2026-10-19",
+      "title": "🚩 AUX ORDRES DU SEIGNEUR - ralliement, portraits et mises à jour automatiques",
+      "changes": [
+        { "tag": "new", "text": "🚩 Point de ralliement propre à chaque bâtiment, comme dans Age of Empires : règle-le dans le panneau d'une caserne (sur la terre) ou du chantier naval (sur l'eau), et les unités produites s'y rendent. Il ne se construit plus depuis le menu." },
+        { "tag": "new", "text": "🌀 Le portail se pose toi-même en début de partie, juste après le grenier et l'entrepôt." },
+        { "tag": "new", "text": "🖼️ Portraits carrés des unités dans les bâtiments de recrutement, façon Age of Empires." },
+        { "tag": "new", "text": "🎣 Villageois : pêche depuis le rivage (clic droit sur l'eau au bord de la côte), fuite vers le donjon quand un ennemi approche, et bouton « villageois inactifs » (touche .) pour passer de l'un à l'autre." },
+        { "tag": "new", "text": "🧭 Croix « Fermer » dans la barre de construction : déplacement libre, il suffit de glisser la souris pour parcourir la carte. Clic droit pendant une pose : la construction est annulée." },
+        { "tag": "new", "text": "🖱️ Nouveaux curseurs dessinés pour le jeu : flèche dorée, hache sur les arbres, pioche sur les rochers, épée sur l'ennemi, drapeau pour le ralliement." },
+        { "tag": "new", "text": "📨 Signaler un bug envoie maintenant le rapport directement sur le Discord (avec la capture). La fiche image reste disponible hors-ligne." },
+        { "tag": "new", "text": "🔄 Le launcher installe désormais tout seul les nouvelles versions du jeu : plus besoin de réinstaller le Setup à chaque mise à jour." },
+        { "tag": "fix", "text": "La caméra ne passe plus sous la carte, même au-dessus d'un relief monté." },
+        { "tag": "fix", "text": "Terrain cohérent : on ne monte plus le terrain contre l'eau ni contre un bâtiment, le relief se construit par paliers, et on n'enfonce plus le sol autour d'un bâtiment (il ne reste plus en l'air)." },
+        { "tag": "fix", "text": "On ne peut plus creuser sous les pieds d'un habitant, et personne ne reste à marcher sur l'eau." },
+        { "tag": "fix", "text": "Fin de l'invincibilité derrière l'eau : les assaillants traversent à gué l'eau creusée et les douves (lentement, sous les flèches)." },
+        { "tag": "fix", "text": "Les cadres des boutons sont fermés jusque dans leurs coins coupés (bouton « Aléatoire » du blason)." },
+        { "tag": "tech", "text": "🔐 Le code du mode admin est vérifié par le serveur ; l'ancien code a été retiré." },
+        { "tag": "tech", "text": "🏷️ Les propriétés du Setup affichent la version du jeu, et le launcher est livré sans commentaires." },
+        { "tag": "tech", "text": "🤖 L'application Android est mise à jour avec la 0.2.1f." }
+      ]
+    },
+    {
+      "version": "0.2.1e",
+      "date": "2026-10-18",
+      "title": "🔒 SOUS BONNE GARDE - jeu protégé et version PC traduite",
+      "changes": [
+        { "tag": "fix", "text": "🌍 La version PC parle enfin anglais, espagnol et allemand : les fichiers de langue manquaient dans le jeu installé (seuls le navigateur et Android en profitaient)." },
+        { "tag": "tech", "text": "🔒 Le code du jeu livré est désormais protégé (compacté et brouillé, sans commentaires) sur PC, Steam, Android et navigateur, sans perte de fluidité." },
+        { "tag": "tech", "text": "🧹 Plus aucun fichier interne chez les joueurs : notes de fabrication du launcher, mode d'emploi Steam et fichiers du panneau d'administration ont été retirés des versions livrées." },
+        { "tag": "tech", "text": "🤖 L'application Android est mise à jour avec la 0.2.1e." }
+      ]
+    },
+    {
+      "version": "0.2.1d",
+      "date": "2026-10-18",
+      "title": "👥 LES BRAS DU ROYAUME - villageois façon Age of Empires",
+      "changes": [
+        { "tag": "new", "text": "👥 Sélection multiple des villageois façon Age of Empires : trace un rectangle (villageois et soldats ensemble), Maj+clic pour en ajouter ou en retirer, double-clic pour prendre tous ceux du coin." },
+        { "tag": "new", "text": "🪓 Ordres de groupe au clic droit : un arbre = du bois, un rocher = de la pierre, un filon = de l'or, un chantier = on construit, un bâtiment = on y travaille (autant qu'il y a de postes), le sol = on s'y rend en ordre dispersé." },
+        { "tag": "new", "text": "🧺 Récolte libre : tes villageois coupent, taillent et extraient eux-mêmes, puis portent leur charge sur l'épaule jusqu'à la réserve la plus proche (donjon, entrepôt, camp de bûcheron, carrière, mine d'or). Les arbres finissent par tomber et les filons s'épuisent." },
+        { "tag": "new", "text": "🔨 Envoie tes villageois aider sur un chantier : ils comptent comme bâtisseurs, puis prennent un poste dans le bâtiment terminé s'il en a." },
+        { "tag": "new", "text": "🎬 Animations façon Stronghold : coups de hache, de pioche et de marteau, copeaux, poussière de pierre et éclats d'or, dépôt de la charge à la réserve." },
+        { "tag": "new", "text": "🎖️ Groupes de contrôle : Ctrl+1 à 9 pour enregistrer une sélection, 1 à 9 pour la rappeler (deux fois : la caméra s'y rend), Échap pour tout lâcher. Le panneau du groupe a ses raccourcis : Bois, Pierre, Or, Chantier, Au village." },
+        { "tag": "fix", "text": "Les drapeaux ne flottent plus au-dessus des tours (forteresse, porte royale, merveille) et ne sont plus plantés à côté des donjons : chaque drapeau est posé sur le bâtiment, et le fanion du royaume flotte en haut du donjon. Ceux du château royal et de la tour d'éclaireur sont montés sur leurs tours." },
+        { "tag": "fix", "text": "Modifier le blason ne réinitialise plus la couleur du royaume que tu as choisie : seule la couleur principale du blason la change, quand tu la modifies." },
+        { "tag": "fix", "text": "Les charges portées (bois, pierre, sacs) sont tenues sur l'épaule au lieu de flotter au-dessus de la tête." },
+        { "tag": "tech", "text": "🤖 L'application Android est mise à jour avec la 0.2.1d." }
+      ]
+    },
+    {
+      "version": "0.2.1c",
+      "date": "2026-10-17",
+      "title": "🐣 PÂQUES AU ROYAUME - chasse aux œufs et cloches de Rome",
+      "changes": [
+        { "tag": "new", "text": "🐣 Pâques arrive dans le royaume, comme Noël et la Nuit des Revenants : du dimanche des Rameaux au dimanche qui suit Pâques (les dates changent chaque année, le jeu les calcule tout seul)." },
+        { "tag": "new", "text": "🌸 Décor de fête : œufs peints au pied des maisons, fanions pastel, grand œuf décoré sur la place du village avec sa corbeille et ses fleurs ; le royaume prend ses couleurs de printemps." },
+        { "tag": "new", "text": "🥚 Chasse aux œufs : des œufs apparaissent un peu partout. Clique dessus, ou laisse tes villageois et soldats les ramasser en passant : or, nourriture ou chocolats (bonheur). Attention aux rares œufs d'or : +150 or !" },
+        { "tag": "new", "text": "🔔 Les cloches de Pâques reviennent de Rome et sèment des œufs autour de l'église (ou du donjon)." },
+        { "tag": "new", "text": "🛡️ Trouve 10 œufs pour gagner le blason « Œuf de Pâques » (+20 prestige). Pendant la fête : +4 de bonheur, +3 de plus avec les chocolats." },
+        { "tag": "new", "text": "⚙️ Paramètres : « Toujours Pâques » rejoint « Toujours Noël » et « Toujours la Nuit des Revenants »." },
+        { "tag": "fix", "text": "🛠️ Correctif : les escaliers et les portes de pierre (châtelet, porte royale, poterne, barbacane) ne tournent plus d'un quart de tour à la pose ; ils gardent le sens montré par l'aperçu." },
+        { "tag": "tech", "text": "🤖 L'application Android est mise à jour avec Pâques." }
+      ]
+    },
+    {
+      "version": "0.2.1b",
+      "date": "2026-10-17",
+      "title": "📱 LE ROYAUME DANS TA POCHE - appli Android, mobile et plein écran",
+      "changes": [
+        { "tag": "new", "text": "🤖 Kingdoms Farm sur Android : une vraie application (APK) avec le jeu complet, jouable sans connexion. Elle s'ouvre en plein écran, à l'horizontale, garde l'écran allumé pendant la partie, avec son icône et son écran de démarrage." },
+        { "tag": "new", "text": "📱 Kingdoms Farm se joue aussi sur téléphone et tablette, directement dans le navigateur : l'interface se compacte automatiquement sur les petits écrans, les panneaux et menus défilent au doigt." },
+        { "tag": "new", "text": "🔨 Sur mobile, deux gros boutons en bas à droite : Construire (la barre se replie d'elle-même quand tu as choisi un bâtiment) et Mini-carte, à afficher à la demande." },
+        { "tag": "new", "text": "⛶ Bouton plein écran dans la version navigateur ; sur téléphone, le jeu passe en plein écran et en paysage dès le premier geste. Une invitation s'affiche si le téléphone est tenu à la verticale." },
+        { "tag": "new", "text": "📲 La version navigateur s'installe aussi sur l'écran d'accueil (Android et iPhone) : elle s'ouvre alors comme une application, en plein écran." },
+        { "tag": "tech", "text": "🪶 Rendu allégé sur mobile : résolution adaptée et préréglage graphique Performance au premier lancement." },
+        { "tag": "fix", "text": "Les boutons « Quitter le jeu » et « Retour à Windows » n'apparaissent plus là où ils ne servent à rien (navigateur et Android)." }
+      ]
+    },
+    {
+      "version": "0.2.1a",
+      "date": "2026-10-17",
+      "title": "🎛️ À VOTRE MESURE - ta partie, tes règles, ta langue",
+      "changes": [
+        { "tag": "new", "text": "🎛️ Création de partie entièrement repensée : 7 onglets (Le monde, Ton royaume, Les règles, L'économie, Le monde vivant, Défis & lignée, Récapitulatif) et 6 préréglages en un clic : Détente, Classique, Bâtisseur, Seigneur de guerre, Survie, Surprise." },
+        { "tag": "new", "text": "🏆 Choisis ton objectif : survivre à 12 ou 25 vagues, le sacre royal, ou une partie sans fin. Règle la taille des vagues, le répit entre elles et la date de la première attaque." },
+        { "tag": "new", "text": "🌾 Économie à ta mesure : ressources et habitants de départ, vitesse des chantiers, production, or et commerce, capacité des réserves." },
+        { "tag": "new", "text": "🌲 Le monde vivant à la carte : active ou coupe loups, faune sauvage, vermine, ressources épuisables, pègre, révoltes, tempêtes en mer, brigands et pirates, fêtes de saison, légendes, et choisis des seigneurs rivaux rancuniers ou placides." },
+        { "tag": "new", "text": "🎯 Défis & lignée en belles cartes cliquables, un récapitulatif avec la difficulté estimée, et tes réglages mémorisés pour la partie suivante." },
+        { "tag": "new", "text": "🏘️ Les âges du royaume : Hameau, Village (15 habitants), Bourg (35) et Cité (60). Les bâtiments se débloquent au fil de ta croissance, pour une prise en main en douceur (option « Tout dès le départ » pour les vétérans)." },
+        { "tag": "new", "text": "🌍 Kingdoms Farm parle anglais, espagnol et allemand : tout le jeu est traduit (plus de 3 300 textes). Change la langue dans les Paramètres." },
+        { "tag": "new", "text": "🎬 Nouvelle cinématique d'ouverture façon Stronghold : l'aube sur la vallée, le village au travail, la horde qui marche au crépuscule, le château et sa garde, puis le titre. Clic ou touche pour passer." },
+        { "tag": "new", "text": "🪦 Le cimetière (Village › Foi) : le fossoyeur enterre villageois et soldats tombés. Bonheur pour tout le royaume (encore plus près d'une chapelle ou d'une église) ; sans cimetière, les morts sans sépulture pèsent sur le moral. Les tombes apparaissent une à une." },
+        { "tag": "new", "text": "💀 Nuit des Revenants : s'il y a un cimetière, les squelettes sortent vraiment de ses tombes, en émergeant de terre." },
+        { "tag": "new", "text": "🐈 La chatière refaite : une maisonnette avec son arbre à chats et trois chats qui patrouillent dans un rayon de 6 cases (cercle affiché). Ils chassent les rats et protègent les greniers. À l'intérieur : coussins, panier de chatons et la nourrice des chats." },
+        { "tag": "new", "text": "🐞 Signaler un bug crée une fiche complète en une seule image : capture d'écran, catégorie, gravité, étapes, état de la partie et erreurs. Elle est enregistrée dans Documents › Kingdoms Farm › Rapports de bug : glisse-la dans le salon des bugs du Discord." },
+        { "tag": "tech", "text": "⚡ Lancement bien plus rapide : le jeu installé démarre en moins d'une seconde (avant, plus de 20 secondes de décompression à chaque partie) et le launcher ne relit plus 230 Mo de fichiers à chaque ouverture." },
+        { "tag": "tech", "text": "🚪 Entrer dans un bâtiment et en sortir est désormais instantané : intérieurs préparés à l'avance, plus aucun à-coup, et la caméra glisse doucement." },
+        { "tag": "fix", "text": "Grimoire : les onglets du côté s'ajustent à la hauteur du livre et ne débordent plus, même sur un petit écran ; le livre est un peu plus grand." },
+        { "tag": "fix", "text": "Au démarrage, la vue du menu n'affiche plus un sol noir pendant le chargement." },
+        { "tag": "fix", "text": "Les vagues et la garde de la cinématique ne peuvent plus déborder sur une partie lancée." }
+      ]
+    },
+    {
+      "version": "0.2.1",
+      "date": "2026-10-16",
+      "title": "👑 LE ROYAUME VIVANT - la plus grosse mise à jour de Kingdoms Farm",
+      "changes": [
+        { "tag": "new", "text": "🦌 De vrais animaux animés (pack Quaternius) : loups, chiens de guerre, cerfs, biches, sangliers, renards, chats, aigles, rats, vaches, moutons, chevaux des cavaliers et du haras, et un dragon royal rouge et or qui dort sur son trésor puis crache des flammes qui brûlent soldats et toits. La ménagerie accueille cerf blanc, zèbre, aigle royal, loup blanc, alpaga et cheval arabe ; dans les bois rôde désormais un sanglier furieux." },
+        { "tag": "new", "text": "👑 Couronnement : 80 habitants, 60 bâtiments, une église et 1000 or… et ton seigneur devient roi. Château royal, lois royales (Paix du roi, Ban et arrière-ban) et rivaux plus féroces." },
+        { "tag": "new", "text": "🏰 9 nouveaux bâtiments avec intérieur : moulin à eau (gèle l'hiver), monastère et ses moines copistes, cartographe, hôtel des monnaies, comptoir du prêteur (emprunts… et faillite), ménagerie royale, maison du forestier, phare, chatière." },
+        { "tag": "new", "text": "🌲 Nature vivante : forêts, gibier et poissons s'épuisent ; glissements de terrain sans forestier ; renards voleurs de poules, sangliers, aigles ; tempêtes en mer ; expéditions lointaines vers des terres inconnues." },
+        { "tag": "new", "text": "🃏 La face cachée : guilde des voleurs (raser ou pactiser), contrebande et inspections du roi, marché noir, assassinats, révoltes paysannes, prisonniers (rançon, enrôlement ou clémence)." },
+        { "tag": "new", "text": "⭐ Les artisans progressent : apprenti, compagnon, maître (plus rapide), puis la retraite qui forme les jeunes." },
+        { "tag": "new", "text": "🕊️ Seigneurs rivaux à caractère (le Rusé, le Pieux, le Brutal, le Marchand) qui se souviennent de tout ; mariages royaux et querelles de succession." },
+        { "tag": "new", "text": "🧑‍🌾 Gens du village : Gaspard le forgeron, Mahaut l'herboriste, Bertrand l'ivrogne… avec leurs bulles de dialogue. Contes au coin du feu l'hiver, l'épée dans la pierre et un dragon endormi sous la montagne." },
+        { "tag": "new", "text": "🎃 Nuit des Revenants (fin octobre : citrouilles, squelettes du cimetière) et 🎄 Marché de Noël (décembre : neige, sapin, cadeaux), avec une pièce de blason à gagner." },
+        { "tag": "new", "text": "📜 Saga enluminée de ton règne à partager sur Discord, 🌳 arbre de lignée (renom d'une partie à l'autre), blasons à collectionner, défis à modificateurs (hiver éternel, tout en bois…)." },
+        { "tag": "new", "text": "🧩 Éditeur de scénarios dans le bac à sable : bâtiments ennemis, objectifs, et un code à partager. « Jouer un scénario » depuis le menu, avec le scénario de la semaine." },
+        { "tag": "new", "text": "🛠️ Confort : la page Bonheur mène au problème en un clic, Ctrl+Z annule la dernière construction, copier-coller de quartiers, pinceau de toits par quartier, décoration libre, mode daltonien." },
+        { "tag": "new", "text": "🎵 La musique suit l'action (tambours de guerre, fanfare de victoire), le crieur de ville annonce les nouvelles, et on entend chaque atelier en zoomant." },
+        { "tag": "new", "text": "🎮 Manette, écran tactile, mode performance automatique, chargement progressif, mode bande-annonce enregistrable en vidéo, bouton « Signaler un bug » (envoyé sur le Discord)." },
+        { "tag": "fix", "text": "Les troupes qui passent un portail vers un château ennemi attendent tes ordres au lieu de foncer seules ; plus de défaite quand un donjon tombe hors de ta cité ; correction d'un gel du jeu quand une unité sortait de la carte." },
+        { "tag": "tech", "text": "Chaque version est maintenant prête pour Steam (build sans launcher, succès Steam préparés)." }
+      ]
+    },
+    {
+      "version": "0.2.0c",
+      "date": "2026-10-16",
+      "title": "🏠 DERRIÈRE LES PORTES - 18 intérieurs neufs ou refaits",
+      "changes": [
+        { "tag": "new", "text": "🪓 Bûcheron : le fendeur abat sa hache et la bûche éclate en deux, avec des copeaux qui volent ; un scieur au chevalet et un porteur qui apporte les rondins." },
+        { "tag": "new", "text": "🍖 Grenier : jambons et saucisses suspendus aux perches de fumage, plus nombreux quand la réserve se remplit ; des villageois livrent viande et grain." },
+        { "tag": "new", "text": "📦 Entrepôt : piles de bois, de pierre et coffres d'or qui grossissent avec tes stocks ; porteurs qui déposent rondins et blocs." },
+        { "tag": "new", "text": "🥖 Boulangerie, ⚙️ moulin (meules qui tournent), 🍺 taverne (comptoir, broche, clients), 🐎 haras et 🐑 bergerie refaits." },
+        { "tag": "new", "text": "🛒 Marché (étals sous auvents rayés, chalands), ⚓ port de pêche (séchoirs à poissons, filets, barque), 📚 académie (pupitres, tableau, sphère armillaire), 🏛️ Merveille (salle du trône)." },
+        { "tag": "new", "text": "🔥 Bas fourneau (soufflet, braises, étincelles sous le marteau), 🧵 tisserand (rouet, écheveaux, cuves de teinture), 🏹 champ de tir (les flèches volent vers les cibles), 🐴 écurie (destriers, maréchal-ferrant), 🔩 ingénierie (catapulte en chantier), 🕊️ ambassade (diplomates de trois royaumes)." },
+        { "tag": "new", "text": "🐕 Nouvelle cage à chiens façon Stronghold : socle de pierre, barreaux, grille relevable, niche et chiens visibles." },
+        { "tag": "fix", "text": "Les murs intérieurs reprennent le matériau du bâtiment (pierre, bois ou enduit) ; plus de vue intérieure pour le puits, la citerne et l'atelier des réparateurs." }
+      ]
+    },
+    {
+      "version": "0.2.0b",
+      "date": "2026-10-16",
+      "title": "📖 LE GRIMOIRE ET L'ÉCHELLE DU ROYAUME - ⚠️ les parties sauvegardées sont effacées",
+      "changes": [
+        { "tag": "tech", "text": "⚠️ IMPORTANT : la nouvelle échelle des bâtiments rend les anciennes villes incompatibles. Au premier lancement, tes parties sauvegardées (partie en cours, 5 emplacements, sauvegarde rapide) sont EFFACÉES. Tes réglages, hauts faits et meilleur score sont conservés." },
+        { "tag": "new", "text": "🏗️ Échelle cohérente : personnages à taille humaine, décors à leur juste hauteur, et 11 grands bâtiments sur 2×2 cases (taverne, caserne, marché, grenier, entrepôt, académie, hôpital…)." },
+        { "tag": "new", "text": "📖 Le Grimoire refait façon livre ancien, posé sur un bureau d'érudit éclairé aux chandelles, toujours visible sur l'interface avec le bonheur du royaume ; nouvelle page « Bonheur » (causes, seuils, conseils, courbe)." },
+        { "tag": "new", "text": "🌀 Portails refaits (arche de pierre, voile magique) ; chaque cité a son portail de sortie vers la carte du monde : sélectionne tes troupes et clique sur un portail pour les téléporter." },
+        { "tag": "new", "text": "🕊️ Diplomatie entre royaumes : les cités rivales s'allient et se font la guerre entre elles, t'envoient des émissaires (tribut, trêve, pacte) ; ton diplomate peut rapprocher ou brouiller deux royaumes." },
+        { "tag": "new", "text": "🔥 Brasero de défense : les archers à proximité tirent des flèches enflammées, comme dans Stronghold." },
+        { "tag": "new", "text": "🗿 Statues sculptées d'après les personnages (marbre, bronze) ; fêtes (mât de mai, tréteaux, puits à vœux, arche fleurie) et terreur (gibet, têtes sur piques, chevalet)." },
+        { "tag": "new", "text": "🏯 Donjons refaits (tour carrée, forteresse) et nouveau Manoir de bois au départ ; Merveille transformée en palais royal." },
+        { "tag": "new", "text": "🏠 Les intérieurs s'ouvrent dès qu'on clique sur un bâtiment ; la carte du monde relie toujours tous les portails par la terre." },
+        { "tag": "fix", "text": "Création de personnage : grimoire, bâton, baguette et arbalètes tenus dans le bon sens (30 combinaisons vérifiées)." }
+      ]
+    },
+    {
+      "version": "0.2.0a",
+      "date": "2026-10-17",
+      "title": "🏰 LA VIE DERRIÈRE LES MURS - intérieurs, portes, diplomatie, loups et chiens",
+      "changes": [
+        { "tag": "new", "text": "🏠 Intérieurs : « Voir l'intérieur » ouvre une vue en coupe de 20 bâtiments (maison, taverne, boulangerie, forges, caserne, hôpital, académie…) avec leurs habitants au travail : forgerons à l'enclume, buveurs qui trinquent, malades alités, savants qui lisent." },
+        { "tag": "new", "text": "🏯 Le donjon a des étages (de 2 à 4 selon ta population) reliés par des escaliers où les gardes montent et descendent ; les tours ont un escalier en colimaçon parcouru par les soldats et un archer aux créneaux." },
+        { "tag": "new", "text": "🚪 Portes : ouvertes, l'ennemi entre ; fermées, il doit assiéger. La fermeture automatique devient une option par porte. Les châteaux adverses ont aussi une vraie porte, que leur seigneur ferme quand ton armée approche." },
+        { "tag": "new", "text": "🕊️ Ton diplomate peut aller parlementer au château ennemi : reçu en audience dans la grande salle (sauf si ton armée est aux portes), cadeaux plus efficaces, traités plus accessibles, et une paix signée lève le siège." },
+        { "tag": "new", "text": "🐺 Des meutes de loups sortent des bois et s'en prennent aux villageois ; 🐕 la cage à chiens lâche 4 chiens de guerre sur l'ennemi, comme dans Stronghold." },
+        { "tag": "new", "text": "⛏️ Le fer devient un minerai à part : filons rouille sur la carte, la mine de fer se bâtit à côté." },
+        { "tag": "new", "text": "🔥 Place du village obligatoire en début de partie ; chaque bâtiment imposé explique ce qu'il est et pourquoi il est nécessaire." },
+        { "tag": "new", "text": "🧺 Les travailleurs déchargent eux-mêmes leur production au grenier et à l'entrepôt (animation et gain affiché au dépôt)." },
+        { "tag": "new", "text": "🗺️ Génération de carte enrichie : formes Côte, Deux rives, Haut plateau ; niveau de la mer, forêts, rivières, climat ; graine partageable." },
+        { "tag": "new", "text": "🧱 Menu de construction façon Stronghold (catégories, sous-catégories, vignettes 3D) ; chemins et ponts au Village, douves et remblai près des remparts, avec de nouveaux visuels." },
+        { "tag": "new", "text": "🔠 Paramètres d'interface : taille de l'interface, taille des textes, transparence, éléments affichés ; tous les réglages sont enregistrés dans un fichier de configuration." },
+        { "tag": "new", "text": "⚓ Port de pêche, port marchand et chantier naval refaits ; éclaireur recruté au donjon ; arbres à l'échelle des bâtiments." },
+        { "tag": "fix", "text": "Bombe du roublard et chope du barbare dans la main gauche ; travailleurs qui restaient bloqués devant le grenier ou l'entrepôt." }
+      ]
+    },
+    {
+      "version": "0.2.0",
+      "date": "2026-10-16",
+      "title": "🌍 LE ROYAUME VIVANT - saisons, campagne, flottes, forges et cartes inédites",
+      "changes": [
+        { "tag": "new", "text": "❄️ Hiver vivant : les rivières gèlent et se traversent à pied (l'ennemi aussi !), puis la fonte provoque des crues au printemps." },
+        { "tag": "new", "text": "📅 Vrai calendrier : jour, mois, année (12 mois, 3 par saison, 1 mois = 20 min, réglable ou saisons désactivables). Les saisons changent la vie des villageois : chauffage l'hiver, soif l'été, fête des moissons." },
+        { "tag": "new", "text": "🔥 Les incendies se propagent de maison en maison ; les villageois forment des chaînes de seaux depuis les puits." },
+        { "tag": "new", "text": "⚒️ Production façon Stronghold : les artisans vont chercher bois et fer à la réserve, fabriquent arcs, lances, épées et armures et les livrent à l'armurerie ; chaque soldat équipé prend ses armes." },
+        { "tag": "new", "text": "🍞 Chaînes de production : blé → moulin → farine → boulangerie → pain ; laine → tisserand → étoffes vendues au marché. Les porteurs ramènent leurs charges à la réserve." },
+        { "tag": "new", "text": "🏛️ Conseil du seigneur (sénéchal, maréchal, chapelain) avec talents, loyauté, conseils… et trahisons. 🕵️ Tour des espions : reconnaissance, chasse aux traîtres, sabotage." },
+        { "tag": "new", "text": "🛣️ Routes commerciales sur la carte du monde : caravanes, péages, patrouilles et embuscades de brigands." },
+        { "tag": "new", "text": "⚓ Batailles navales : flottes pillardes, abordages et brûlots." },
+        { "tag": "new", "text": "📜 Campagne « La Reconquête du Val-d'Or » : 5 chapitres avec cinématiques et cartes dessinées." },
+        { "tag": "new", "text": "🗓️ Défi de la semaine : même carte et mêmes conditions pour tous, classement dédié." },
+        { "tag": "new", "text": "🗺️ Nouveau générateur de cartes : relief, rivières, forêts et marais réalistes, départ équitable et 3 nouvelles formes (péninsule, vallée, lacs)." },
+        { "tag": "new", "text": "📷 Mode photo (touche P) et time-lapse de ta cité ; 📖 le livre du royaume devient un grimoire (renommer sa cité, conseil…)." },
+        { "tag": "new", "text": "🎓 Académie et ambassade redessinées ; ⛪ modules d'église pivotables avec panneau toujours visible ; 🎵 4 nouvelles musiques médiévales." },
+        { "tag": "new", "text": "🌾 Champs, houblonnières, vergers et fromagerie redessinés (pack KayKit) : blé, épouvantail, perches de houblon, pommiers, grange et vaches." },
+        { "tag": "new", "text": "🏘️ Maisons qui évoluent : chaumière → maison → maison bourgeoise → manoir selon les besoins (pain et eau, étoffes et bière, vin et église consacrée). Plus d'habitants, plus d'impôts, et de nouveaux bâtiments débloqués." },
+        { "tag": "new", "text": "🌫️ Brouillard de guerre : explore la carte avec tes éclaireurs, fouille des ruines (trésors, reliques) et rase les camps de bandits." },
+        { "tag": "new", "text": "🔭 Tour d'éclaireur (façon Age of Empires Online) : seul un éclaireur peut la bâtir, là où il se trouve ; elle dissipe le brouillard sur une large zone. Brouillard désactivable en début de partie." },
+        { "tag": "new", "text": "🏹 Sièges ennemis : béliers, catapultes, tours de siège, sapeurs qui creusent sous tes murs (contre-mine !) et flèches enflammées sur les toits." },
+        { "tag": "new", "text": "🌙 Routine jour / nuit : les habitants rentrent dormir, la taverne s'anime le soir." },
+        { "tag": "new", "text": "🏥 Hôpital avec quarantaine et médecins de peste ; ⛏️ vraie chaîne mine de fer + charbonnier → bas fourneau ; 🍇 vignoble pour le vin des nobles." },
+        { "tag": "new", "text": "👑 Vassaux : les villages ralliés paient tribut… mais se révoltent si tu les négliges. 🗡️ Camp de mercenaires pour les urgences." },
+        { "tag": "new", "text": "💾 5 emplacements de sauvegarde + sauvegarde rapide (F5 / F9) ; 📈 statistiques en graphiques dans le grimoire ; 🔊 ambiance sonore (oiseaux, vent, foule, cloches)." },
+        { "tag": "new", "text": "🎨 Tous les bâtiments dans le style KayKit (bergerie, tisserand, tour des espions, écurie, mines, marché, lice, village…) et pictogrammes de construction unifiés." },
+        { "tag": "fix", "text": "❄️ La neige recouvre enfin les terres en hiver (et les arbres se givrent) ; pluie, crues et tornades s'affichent désormais correctement." },
+        { "tag": "fix", "text": "🌉 Les arches du pont de pierre sont de vraies voûtes, assez hautes pour laisser passer l'eau." },
+        { "tag": "fix", "text": "⬜ Fini pour de bon les petits carrés clairs sur les façades des bâtiments." },
+        { "tag": "fix", "text": "🗂️ La liste des cités et les quêtes ne se chevauchent plus." },
+        { "tag": "fix", "text": "🏰 Le nom choisi au départ n'est plus redemandé après la pose du donjon." }
+      ]
+    },
+    {
+      "version": "0.1.9",
+      "date": "2026-10-15",
+      "title": "👑 LE RÈGNE DES SEIGNEURS - décrets, tournois, dynastie, légendes et chantiers vivants",
+      "changes": [
+        { "tag": "new", "text": "🏗️ Nouvelle animation de construction : le bâtiment s'élève couche par couche dans son échafaudage, sous sa silhouette « plan », avec un palan qui hisse les pierres." },
+        { "tag": "new", "text": "📜 Décrets du seigneur (bouton 📜 ou panneau du château) : corvée, couvre-feu, dîme, levée en masse, justice exemplaire, jours chômés, gabelle - chacun avec son prix." },
+        { "tag": "new", "text": "📖 Chronique du royaume : pèlerins, comètes, marchand vénitien, querelles de village… des choix à faire, et un journal relisable en fin de partie." },
+        { "tag": "new", "text": "🏇 Tournoi de chevalerie : bâtis la Lice et organise chaque printemps un tournoi contre les champions des cités voisines (joutes animées, prestige, or, diplomatie)." },
+        { "tag": "new", "text": "🫕 Huile bouillante sur les portes, 📌 chausse-trappes et 🔥 torches ; 🌙 sièges de nuit où les tours voient moins loin sans lumière." },
+        { "tag": "new", "text": "🚩 Régiments : nomme une troupe, lève sa bannière ; elle gagne de l'expérience jusqu'au rang de vétérans." },
+        { "tag": "new", "text": "🎪 Foires saisonnières sur la place du village : mât de cocagne, danses, étals et gros boost de bonheur." },
+        { "tag": "new", "text": "👑 Dynastie : ton souverain vieillit, a des héritiers aux traits propres (pieux, cruel, bâtisseur…) qui lui succèdent." },
+        { "tag": "new", "text": "🦌 Chasse royale : cerfs et sangliers dans les forêts, pavillon de chasse et grande chasse du souverain chaque saison." },
+        { "tag": "new", "text": "🐺 Créatures légendaires (troll des collines, loup géant) et ✝️ reliques à exposer dans le reliquaire de la cathédrale." },
+        { "tag": "new", "text": "🏅 14 hauts faits conservés d'une partie à l'autre, qui débloquent couleurs de toits et bannières." },
+        { "tag": "new", "text": "🌐 Classement en ligne : publie ton score en fin de partie (meilleurs scores et victoires les plus rapides)." }
+      ]
+    },
+    {
+      "version": "0.1.8",
+      "date": "2026-10-14",
+      "title": "⛪ LES BÂTISSEURS DE CATHÉDRALES - églises à modules, royaume unifié et remparts de pierre",
+      "changes": [
+        { "tag": "new", "text": "⛪ Chapelle, église et cathédrale se bâtissent module par module, façon Foundation : nef, portail à rosace, clocher, abside, chapelle latérale, cloître." },
+        { "tag": "new", "text": "📐 Plan de construction : pose tous les modules en aperçu bleu sur la carte (gratuit, recliquer pour retirer), puis « Valider la construction »." },
+        { "tag": "new", "text": "✨ Consécration : chaque édifice a ses exigences ; les modules augmentent soins, portée et bonheur, et un édifice consacré reçoit un bonus." },
+        { "tag": "new", "text": "🏘️ Royaume unifié : grenier, entrepôt, taverne, moulin, boulangerie, forges, caserne, champ de tir… tous dans le même style que le reste du jeu." },
+        { "tag": "new", "text": "🧱 Remparts, tours, portes et pont de pierre dans la pierre grise du donjon ; nouveau pont à arche avec chaussée pavée." },
+        { "tag": "new", "text": "⛲ Place du village refaite : pavés, foyer, lanternes et bancs." },
+        { "tag": "new", "text": "🪜 Échelles d'assaut et échelle de siège sur chariot redessinées ; pilori, potence et bûcher à taille réelle." },
+        { "tag": "new", "text": "👑 Une dame a bien un visage de femme, un seigneur un visage d'homme ; personnalise ton souverain dès la création de partie." },
+        { "tag": "new", "text": "🔨 Villageois sélectionné + clic sur un bâtiment = il y va travailler (curseur marteau), comme dans Age of Empires." },
+        { "tag": "new", "text": "🎉 Fin de la limite de 7 jours : le jeu complet pour tous les testeurs (le jeu reste en Alpha)." },
+        { "tag": "fix", "text": "🖥️ Menu admin, panneau des bâtiments et liste des cités ne sont plus cachés par la mini-carte." },
+        { "tag": "fix", "text": "⬜ Fini les petits carrés blancs au pied des bâtiments et du puits." }
+      ]
+    },
+    {
+      "version": "0.1.7",
+      "date": "2026-10-14",
+      "title": "🏰 LA CITÉ DES BÂTISSEURS - marché, remparts de pierre et souverain sur mesure",
+      "changes": [
+        { "tag": "new", "text": "🎨 Personnalise ton souverain : silhouette, arme, main gauche, casque, cape et sa couleur, taille… avec un aperçu 3D animé (bouton sur sa fiche)." },
+        { "tag": "new", "text": "🧺 Étals de marchand : un marché façon Foundation qui nourrit les maisons alentour (bonheur, moins de gaspillage) - groupe-les autour de la place du village." },
+        { "tag": "new", "text": "🧱 Remparts en pierre taillée façon Stronghold, statues en marbre veiné sur socles de pierre, plages de sable." },
+        { "tag": "new", "text": "🗺️ Mini-carte : terrain, bâtiments, troupes, ennemis et cadre de la caméra - clique pour t'y rendre." },
+        { "tag": "new", "text": "⏱️ Barre du temps façon Paradox : pause, ralentir, crans de vitesse, accélérer." },
+        { "tag": "new", "text": "🔨 Bouton Démolir dans le menu de construction (clic ou glisser) et taux de remboursement à choisir en début de partie." },
+        { "tag": "new", "text": "🗼 Pose une tour ou une porte directement sur un rempart : il lui laisse la place et se raccorde." },
+        { "tag": "new", "text": "👻 Déplacer un bâtiment montre sa silhouette (vert = possible, rouge = impossible)." },
+        { "tag": "new", "text": "🔬 5 technologies : Marchés couverts, Conservation, Mâchicoulis, Récupération, Navigation." },
+        { "tag": "fix", "text": "⛵ Les assaillants des autres îles viennent en bateau au lieu de rester coincés au bord de la carte." },
+        { "tag": "fix", "text": "🌀 Voyages : les troupes sélectionnées partent bien, et arrivent au portail d'où elles viennent, sur la terre ferme." },
+        { "tag": "fix", "text": "🏰 Cartes en îles : le château adverse n'apparaît plus sur l'eau." },
+        { "tag": "fix", "text": "🧱 Démolir un rempart réadapte les murs voisins ; fini les carrés blancs sous les bâtiments ; la place du village n'a plus d'intérieur." }
+      ]
+    },
+    {
+      "version": "0.1.6",
+      "date": "2026-10-13",
+      "title": "⚓ LES MERS DU ROYAUME - archipels, flottes et machines de guerre",
+      "changes": [
+        { "tag": "new", "text": "🏝️ Vrais archipels : la carte « Îles » crée 3 à 8 îles séparées par des chenaux navigables." },
+        { "tag": "new", "text": "⛵ Voyage d'île en île : villageois, héros et soldats embarquent à bord des bateaux. Pose un entrepôt sur une nouvelle île pour y bâtir à pleine vitesse." },
+        { "tag": "new", "text": "🧭 Les navires tracent leur route sur l'eau et contournent les îles : barque, galère, nef, brûlot, marchands et pillards." },
+        { "tag": "new", "text": "🏴‍☠️ Nouveaux navires en 3D : barque, galère, nef, brûlot, navire marchand… et les pillards ennemis sous voile noire." },
+        { "tag": "new", "text": "🪵 Refonte des armes de siège : bélier, catapulte, trébuchet, tour de siège et baliste entièrement redessinés." },
+        { "tag": "new", "text": "⏸️ Maîtrise du temps : barre Espace = pause (sans menu), bouton ×1 / ×2 / ×3 et touches + / −." },
+        { "tag": "new", "text": "🖱️ Clic droit : déplace tes unités, affecte un villageois à un bâtiment, embarque ou débarque." },
+        { "tag": "new", "text": "⚔️ Jusqu'à 20 soldats de départ (10, 15 ou 20 en plus du souverain)." },
+        { "tag": "fix", "text": "🧠 Fini les unités coincées : ennemis, alliés, défenseurs et villageois contournent bâtiments, relief et eau." },
+        { "tag": "fix", "text": "🌲 Les séismes ne rasent plus la moitié des forêts." },
+        { "tag": "fix", "text": "🖥️ Création de partie : Retour à gauche, Suivant à droite." },
+        { "tag": "fix", "text": "📦 Installeur fiable : plus besoin de droits admin, il ferme le jeu tout seul et répare une installation interrompue." },
+        { "tag": "fix", "text": "🚀 Le launcher affiche toujours la dernière note de version et le bon numéro." }
+      ]
+    },
+    {
+      "version": "0.1.5",
+      "date": "2026-10-13",
+      "title": "🎺 L'ÉVEIL DU ROYAUME - le royaume change de dimension",
+      "changes": [
+        { "tag": "new", "text": "🎵 Nouvelle bande-son : un thème orchestral inédit accueille désormais les seigneurs dans le menu principal." },
+        { "tag": "new", "text": "🪕 4 nouvelles musiques médiévales en partie (luth, flûte, viole) : Le Conte du barde, Danse du ménestrel, L'Auberge de la vieille tour, Le Festin du roi." },
+        { "tag": "new", "text": "♪ Le titre du morceau s'affiche à chaque changement - clique dessus pour passer au suivant." },
+        { "tag": "new", "text": "🎬 Introduction cinématique repensée : le menu se dévoile après la scène d'ouverture, sans fenêtre qui vient la couper." },
+        { "tag": "new", "text": "🗺️ Création de partie en 3 étapes claires, avec boutons Précédent / Suivant." },
+        { "tag": "fix", "text": "🛡️ Correctif de stabilité aux bords de la carte (plus d'erreur en dehors des limites du monde)." },
+        { "tag": "fix", "text": "🚀 Launcher : il installe désormais automatiquement la version du jeu qu'il contient, fini les anciennes versions bloquées." },
+        { "tag": "tech", "text": "🏰 Tout nouveau serveur royal : licences et administration reconstruites de zéro, plus rapides et plus fiables." }
+      ]
+    },
+    {
+      "version": "0.1.4d",
+      "date": "2026-09-08",
+      "title": "Village vivant, débarquements & commandement",
+      "changes": [
+        { "tag": "new", "text": "Animations de métier : hache (bois), faux (champs), pioche (mine/carrière), panier (verger)…" },
+        { "tag": "new", "text": "Les ennemis ne marchent plus sur l'eau - ils arrivent en drakkar et débarquent sur ta côte." },
+        { "tag": "new", "text": "Troupes : bouton Repli (touche F) pour rompre le combat ; posture Défensive vraiment ancrée (sans poursuite)." },
+        { "tag": "new", "text": "Annonce d'attaque ~15 s avant chaque vague + vagues bien plus espacées." },
+        { "tag": "new", "text": "Pause ⏸ (touche Espace), infobulles des bâtiments, 4 nouvelles musiques." },
+        { "tag": "balance", "text": "Piquier de base sans atelier ; fin de partie proposée (non imposée) sur Merveille ou conquête totale." },
+        { "tag": "fix", "text": "Correctif d'un type de soldat invalide ; période d'essai remise à 7 jours pour tous." }
+      ]
+    },
+    {
+      "version": "1.4.0b",
+      "date": "2026-09-03",
+      "title": "Version démo distribuable",
+      "changes": [
+        { "tag": "new", "text": "7 jours d'essai gratuits dès le premier lancement, avec un bandeau indiquant les jours restants." },
+        { "tag": "new", "text": "Déverrouillage en version intégrale via un code, une fois la démo terminée." },
+        { "tag": "new", "text": "Launcher officiel : maintient ta version à jour automatiquement." },
+        { "tag": "tech", "text": "Besoin de plus de temps ? L'accès peut être prolongé à distance." }
+      ]
+    },
+    {
+      "version": "0.1.4a",
+      "date": "2026-09-01",
+      "title": "Correctif rapide",
+      "changes": [
+        { "tag": "fix", "text": "Servants d'engins de siège : plus de « fausse ressource » fantôme au-dessus des balistes et trébuchets." },
+        { "tag": "fix", "text": "Ciel des biomes Désert et Enneigé : l'ambiance colorée n'est plus écrasée par le cycle jour/nuit." },
+        { "tag": "tech", "text": "Mises à jour : durcissement pour éviter une erreur silencieuse hors-ligne." }
+      ]
+    },
+    {
+      "version": "0.1.4",
+      "date": "2026-08-30",
+      "title": "Siège, murs et biomes",
+      "changes": [
+        { "tag": "new", "text": "Engins de siège revus (baliste et trébuchet sur affût à roues), servis par des villageois." },
+        { "tag": "new", "text": "Échelles ennemies : les assaillants plantent une échelle contre le rempart et l'escaladent." },
+        { "tag": "new", "text": "Biomes : Verdoyant, Désert et Enneigé, avec ciel, herbe et eau adaptés." },
+        { "tag": "new", "text": "Réserves à modules : greniers et entrepôts se fusionnent visuellement quand ils sont accolés." },
+        { "tag": "new", "text": "Tutoriel guidé en 7 étapes et meilleur score conservé." },
+        { "tag": "balance", "text": "Entrepôt désormais obligatoire ; capacités de stockage de base réajustées." },
+        { "tag": "fix", "text": "Arbres et feuillages qui pouvaient apparaître blancs sur certaines cartes graphiques." }
+      ]
+    }
+  ]
+}
