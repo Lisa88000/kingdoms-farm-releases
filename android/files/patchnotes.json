@@ -2,6 +2,35 @@
   "_comment": "Notes de version affichées automatiquement dans le launcher. Édite ce fichier et pousse-le : tous les joueurs voient la mise à jour au prochain lancement. tag ∈ new|fix|balance|tech.",
   "entries": [
     {
+      "version": "0.2.2",
+      "date": "2026-10-23",
+      "title": "👑 DU HAMEAU À LA COURONNE - campagne, siège de château et premiers pas guidés",
+      "changes": [
+        { "tag": "new", "text": "👑 Campagne « Du hameau à la couronne » : 6 missions guidées, du premier hameau au sacre, avec une fiche de mission et ses conseils. Menu principal → Campagne." },
+        { "tag": "new", "text": "🏰 Nouveau scénario « Assiéger un château » : la forteresse de Roc-Noir (double enceinte, neuf tours, garnison et son seigneur) t'attend. Enfonce les portes au bélier, dresse échelles et tour de siège : tes hommes passent par-dessus les murs et ouvrent la porte de l'intérieur. Menu → Scénarios." },
+        { "tag": "new", "text": "🪜 Échelles et tours de siège dans tous les sièges (campagne comprise) : au pied d'un mur, tes soldats à pied montent et passent de l'autre côté. Les cavaliers restent dehors." },
+        { "tag": "new", "text": "📢 Le crieur de ville a une vraie voix : cloche, « Oyez, oyez ! » et une annonce pour chaque grand moment (vague, chef ennemi, victoire, saisons, nouvel âge, incendie, famine, sacre, marchands)." },
+        { "tag": "new", "text": "⚔️ Clic droit sur un bâtiment ennemi avec des soldats sélectionnés : ils l'attaquent (béliers sur une porte, catapultes sur une tour)." },
+        { "tag": "new", "text": "🌅 Les cinq premières minutes repensées : « Jouer » te laisse choisir entre une partie rapide, lancée en un clic, et une partie personnalisée avec tous les réglages ; ton village arrive en cortège, le chambellan te conseille pas à pas, et les premières fois (premiers loups, premier marchand…) sont expliquées." },
+        { "tag": "new", "text": "📊 Bilan de fin de partie : courbes de ta population et de tes ressources, grands moments de ton règne, image à partager." },
+        { "tag": "new", "text": "🎯 Jalon toujours visible : prochain âge, étapes du sacre ou prochaine vague, pour savoir quoi viser." },
+        { "tag": "new", "text": "🛟 Sauvegardes de secours automatiques avant chaque mise à jour du jeu." },
+        { "tag": "new", "text": "⌨️ Toutes les touches sont personnalisables, et la taille des textes se règle au menu pause." },
+        { "tag": "new", "text": "🗺️ Le site du jeu : nouveautés, feuille de route où tu votes pour les prochaines idées, classement, guide, et le jeu jouable dans le navigateur." },
+        { "tag": "new", "text": "📱 Android : un message te prévient quand une nouvelle version de l'application est nécessaire (le jeu, lui, continue de se mettre à jour tout seul)." },
+        { "tag": "new", "text": "🚪 Porte en bois et pont-levis redessinés dans le style du jeu : le pont rejoint bien l'autre rive, et ses chaînes suivent le tablier quand il se lève." },
+        { "tag": "fix", "text": "Fin de partie : une vague pouvait ne jamais se terminer (armée rivale coincée au bord de la carte, loup resté près de sa tanière) et les ennemis s'accumulaient. Les armées rivales débarquent désormais comme les vagues, et un assaillant coincé abandonne." },
+        { "tag": "fix", "text": "Longues parties plus fluides : la mémoire graphique des personnages disparus est enfin libérée (elle grossissait toute la partie)." },
+        { "tag": "fix", "text": "Grandes villes plus fluides : les habitants hors de l'écran ne sont plus dessinés ni animés, et seules les unités proches projettent une ombre." },
+        { "tag": "fix", "text": "Les défenseurs d'une cité ennemie ne frappent plus leurs propres murs ni leur donjon." },
+        { "tag": "fix", "text": "📖 Le Grimoire reste à sa place quand tu sélectionnes des villageois ou des soldats : il ne se décale plus que si un grand panneau le recouvrirait." },
+        { "tag": "tech", "text": "🐞 Rapports d'erreurs automatiques, uniquement avec ton accord (réglable à tout moment), et nouvelle page Confidentialité sur le site." },
+        { "tag": "tech", "text": "🏆 Classement plus juste : chaque score est vérifié par le serveur." },
+        { "tag": "tech", "text": "🛡️ Un jeu modifié par un mod ou un logiciel de triche refuse désormais de démarrer." },
+        { "tag": "tech", "text": "🔒 Outils de développement désactivés dans la version installée ; tests automatiques avant chaque version." }
+      ]
+    },
+    {
       "version": "0.2.1f",
       "date": "2026-10-19",
       "title": "🚩 AUX ORDRES DU SEIGNEUR - ralliement, portraits et mises à jour automatiques",

@@ -1,0 +1,12 @@
+Kingdoms Farm — voix du crieur de ville (0.2.2)
+
+Annonces fabriquées pour le jeu, hors ligne, à partir de :
+- Voix « gilles » (fr_FR-gilles-low) de Piper, entraînée sur le « French Single Speaker Speech Dataset »
+  (Kaggle, bryanpark), publié sous licence CC0 1.0 (domaine public).
+  https://huggingface.co/rhasspy/piper-voices/tree/main/fr/fr_FR/gilles/low
+- Logiciel de synthèse Piper (Michael Hansen / Rhasspy), licence MIT. https://github.com/rhasspy/piper
+- Cloche du crieur : synthétisée pour le jeu (partiels de clochette calculés avec ffmpeg), aucune source externe.
+
+Traitement : voix abaissée d'un ton, égalisée, compressée, écho de place publique, volume normalisé.
+Les fichiers .mp3 de ce dossier sont distribués avec le jeu sous la même liberté (CC0) ;
+crédit apprécié : « Voix : Piper / gilles (CC0) ».

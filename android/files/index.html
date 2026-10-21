@@ -101,7 +101,7 @@
         <p class="tag" data-i18n="tagline">Bâtis ton château · récolte · défends ton royaume</p>
 
         <div id="title-panel">
-          <div class="prealpha-badge" data-i18n="badge">🚧 Version Alpha 0.2.1f - préversion en développement · le contenu et l'équilibrage évoluent</div>
+          <div class="prealpha-badge" data-i18n="badge">🚧 Version Alpha 0.2.2 - préversion en développement · le contenu et l'équilibrage évoluent</div>
           <div class="menu-actions col">
             <button id="mm-play" class="btn-primary" data-i18n="mm_play">▶ Jouer</button>
             <button id="mm-continue" class="btn-ghost hidden" data-i18n="mm_continue">▶ Continuer la sauvegarde</button>
@@ -333,10 +333,16 @@
                 <button data-v="tout">Tout dès le départ</button>
               </div>
             </div><div class="opt">
-              <label>🧭 Conseiller du royaume <span class="dim">(tutoriel et conseils)</span></label>
+              <label>🧭 Conseils du chambellan <span class="dim">(objectifs guidés du début)</span></label>
               <div class="seg" data-key="guide">
-                <button data-v="auto" class="on">Pour ma première partie</button><button data-v="on">Toujours</button>
+                <button data-v="auto" class="on">Au début de chaque partie</button>
                 <button data-v="off">Jamais</button>
+              </div>
+            </div><div class="opt">
+              <label>🏰 Départ du village <span class="dim">(grenier, entrepôt, place et portail)</span></label>
+              <div class="seg" data-key="autoStart">
+                <button data-v="auto" class="on">Installés autour du donjon</button>
+                <button data-v="main">Je les place moi-même</button>
               </div>
             </div><div class="opt">
               <label>🗝️ Code secret <span class="dim">(laisse vide pour une partie normale)</span></label>
@@ -475,7 +481,7 @@
       <div class="menu-card" style="width:min(820px,95vw);text-align:left">
         <div class="crest">📜</div>
         <h1 style="font-size:clamp(20px,3vw,30px)">Conditions, propriété &amp; sécurité</h1>
-        <p class="tag" style="text-align:center">Kingdoms Farm - Alpha privée (préversion) v0.2.1f · à lire avant de jouer</p>
+        <p class="tag" style="text-align:center">Kingdoms Farm - Alpha privée (préversion) v0.2.2 · à lire avant de jouer</p>
         <div class="terms-body" id="terms-body">
           <div class="terms-sec">1 · Nature du logiciel</div>
           <p>Kingdoms Farm est un jeu <b>en développement (Alpha)</b>. Cette préversion est incomplète : contenu, équilibrage, interfaces et sauvegardes <b>peuvent changer, être réinitialisés ou comporter des bugs</b> à tout moment. Le logiciel est fourni « en l'état », sans garantie.</p>
@@ -698,7 +704,7 @@
           </div>
           <div class="opt">
             <label>Version <span class="dim">(numéro de build du jeu)</span></label>
-            <div class="dim" id="set-version" style="font-size:14px;padding:6px 0">Kingdoms Farm v0.2.1f · Alpha (préversion)</div>
+            <div class="dim" id="set-version" style="font-size:14px;padding:6px 0">Kingdoms Farm v0.2.2 · Alpha (préversion)</div>
           </div>
           <div class="opt">
             <label>Réinitialiser <span class="dim">(revenir aux réglages graphiques et audio par défaut)</span></label>
@@ -792,12 +798,15 @@
   <script src="js/features2.js"></script>
   <script src="js/production.js"></script>
   <script src="js/features3.js"></script>
+  <script src="js/secours.js"></script>
+  <script src="js/telemetrie.js"></script>
   <script src="js/royaume.js"></script>
   <script src="js/cimetiere.js"></script>
   <script src="js/menu.js"></script>
   <script src="js/uiprefs.js"></script>
   <script src="js/interiors.js"></script>
   <script src="js/castles.js"></script>
+  <script src="js/siege.js"></script>
   <script src="js/starter.js"></script>
   <script src="js/beasts.js"></script>
   <script src="js/realmbook.js"></script>
@@ -809,7 +818,11 @@
   <script src="js/histoire.js"></script>
   <script src="js/paques.js"></script>
 <script src="js/villageois.js"></script>
+<script src="js/roadmap.js"></script>
 <script src="js/commandes.js"></script>
+<script src="js/premiers-pas.js"></script>
+<script src="js/bilan.js"></script>
+<script src="js/jalons.js"></script>
   <script src="js/adminpanel.js"></script>
   <script src="js/scale.js"></script>
   <script src="js/setup2.js"></script>
