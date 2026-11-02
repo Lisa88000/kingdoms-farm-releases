@@ -2,6 +2,24 @@
   "_comment": "Notes de version affichées automatiquement dans le launcher. Édite ce fichier et pousse-le : tous les joueurs voient la mise à jour au prochain lancement. tag ∈ new|fix|balance|tech.",
   "entries": [
     {
+      "version": "0.2.2a",
+      "date": "2026-11-03",
+      "title": "📱 Correctif téléphone : plus fluide, clavier, rapports de bug, caméra",
+      "changes": [
+        { "tag": "fix", "text": "📱 Android : « Signaler un bug », le classement et la feuille de route disaient « hors ligne » : l'appli contacte maintenant bien le serveur." },
+        { "tag": "fix", "text": "⌨️ Android : la touche Effacer du clavier marche du premier coup, et le correcteur automatique revient (nouvelle application à installer, Kingdoms Farm.apk sur le Discord)." },
+        { "tag": "fix", "text": "🎥 Glisser pour déplacer la caméra : le haut et le bas ne sont plus inversés, ils suivent le même sens que la gauche et la droite (doigt, souris et manette)." },
+        { "tag": "balance", "text": "🪶 Mode Performance sur téléphone vraiment allégé : 3D rendue plus légèrement, 30 images/s régulières, moins d'animations lointaines ; ombres bien moins coûteuses dans les autres modes." },
+        { "tag": "new", "text": "↩️ Android : le bouton Retour ferme le panneau ouvert, puis ouvre le menu pause ; appuie deux fois pour quitter (la partie est sauvegardée)." },
+        { "tag": "new", "text": "💾 Sur téléphone, la partie est sauvegardée et mise en pause dès que tu quittes l'appli (message, appel…)." },
+        { "tag": "new", "text": "📳 Petites vibrations sur téléphone : bâtiment posé, vague qui arrive, bâtiment perdu." },
+        { "tag": "new", "text": "⚙️ Nouveaux réglages graphiques : images par seconde (Auto, 30, 60, illimité) et échelle de rendu 3D (50 à 100 %). En Auto, le jeu ne dépasse plus 60 images/s : un écran 144 Hz ne fait plus chauffer l'ordinateur pour rien." },
+        { "tag": "new", "text": "📤 Sauvegardes : boutons Exporter et Importer (un fichier à garder) dans Sauvegardes de secours. Sur PC, tes parties sont aussi rangées en vrais fichiers dans %APPDATA%/Kingdoms Farm/saves." },
+        { "tag": "tech", "text": "📦 Jeu plus léger : musiques en Opus (46 Mo → 16 Mo) et modèles 3D compressés (46 Mo → 35 Mo, sans changement visible). Téléchargement et démarrage plus rapides." },
+        { "tag": "tech", "text": "💻 PC portables à deux cartes graphiques : le jeu utilise maintenant la plus puissante." }
+      ]
+    },
+    {
       "version": "0.2.2",
       "date": "2026-10-23",
       "title": "👑 DU HAMEAU À LA COURONNE - campagne, siège de château et premiers pas guidés",
