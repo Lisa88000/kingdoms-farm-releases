@@ -2,7 +2,7 @@
   "_comment": "Notes de version affichées automatiquement dans le launcher. Édite ce fichier et pousse-le : tous les joueurs voient la mise à jour au prochain lancement. tag ∈ new|fix|balance|tech.",
   "entries": [
     {
-      "version": "0.2.2a",
+      "version": "0.2.2b",
       "date": "2026-11-03",
       "title": "📱 Correctif téléphone : plus fluide, clavier, rapports de bug, caméra",
       "changes": [
@@ -15,6 +15,7 @@
         { "tag": "new", "text": "📳 Petites vibrations sur téléphone : bâtiment posé, vague qui arrive, bâtiment perdu." },
         { "tag": "new", "text": "⚙️ Nouveaux réglages graphiques : images par seconde (Auto, 30, 60, illimité) et échelle de rendu 3D (50 à 100 %). En Auto, le jeu ne dépasse plus 60 images/s : un écran 144 Hz ne fait plus chauffer l'ordinateur pour rien." },
         { "tag": "new", "text": "📤 Sauvegardes : boutons Exporter et Importer (un fichier à garder) dans Sauvegardes de secours. Sur PC, tes parties sont aussi rangées en vrais fichiers dans %APPDATA%/Kingdoms Farm/saves." },
+        { "tag": "tech", "text": "🚀 Rendu 3D allégé : arbres, rochers et buissons dessinés en lots, corps des personnages fusionnés, petits détails des bâtiments cachés de loin. Environ 3 fois moins de travail pour la carte graphique, sans changement visible." },
         { "tag": "tech", "text": "📦 Jeu plus léger : musiques en Opus (46 Mo → 16 Mo) et modèles 3D compressés (46 Mo → 35 Mo, sans changement visible). Téléchargement et démarrage plus rapides." },
         { "tag": "tech", "text": "💻 PC portables à deux cartes graphiques : le jeu utilise maintenant la plus puissante." }
       ]
